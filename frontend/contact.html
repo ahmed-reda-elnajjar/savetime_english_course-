@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Save Time English</title>
+  <meta name="description" content="Get in touch with Save Time English. Free consultation, course enquiries, or general support.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="courses.html" class="nav-link">Courses</a></li>
+      <li><a href="testimonials.html" class="nav-link">Reviews</a></li>
+      <li><a href="contact.html" class="nav-link active">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div><button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button></div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Get in Touch</h1>
+    <p>Have a question about our English courses? Book a free consultation and we'll help you find the right path.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;" class="contact-layout">
+
+      <!-- Form -->
+      <div class="card" data-aos="fade-right">
+        <h2 style="margin-bottom:5px;">Send Us a Message</h2>
+        <p style="color:var(--text-muted);font-size:0.87rem;margin-bottom:26px;">We reply within 24 hours — usually much faster.</p>
+        <form id="contactForm" onsubmit="handleContact(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" id="cName" placeholder="Your name" required>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-control" id="cEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="cPhone" placeholder="+1 (555) ...">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Subject *</label>
+              <select class="form-control" id="cSubject" required>
+                <option value="">Select subject…</option>
+                <option value="course_inquiry">Course Enquiry</option>
+                <option value="free_consultation">Free Consultation</option>
+                <option value="technical_support">Technical Support</option>
+                <option value="billing">Billing / Payments</option>
+                <option value="partnership">Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-top:14px;">
+            <label class="form-label">Your Message *</label>
+            <textarea class="form-control" id="cMessage" rows="5" placeholder="Tell us your English learning goals, current level, or any questions…" required style="resize:vertical;"></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <input type="checkbox" id="cConsent" required>
+            <label for="cConsent" style="font-size:0.82rem;color:var(--text-secondary);cursor:pointer;">I agree to be contacted by Save Time regarding my enquiry.</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg" id="contactBtn" style="width:100%;">Send Message →</button>
+        </form>
+        <div id="contactSuccess" style="display:none;text-align:center;padding:30px 0;">
+          <div style="font-size:3rem;margin-bottom:14px;">✅</div>
+          <h3 style="margin-bottom:8px;">Message Sent!</h3>
+          <p style="color:var(--text-muted);">Thank you! We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div data-aos="fade-left">
+        <div class="card" style="margin-bottom:18px;">
+          <h3 style="margin-bottom:18px;">Contact Information</h3>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;gap:13px;align-items:flex-start;">
+              <div style="width:40px;height:40px;background:rgba(42,91,196,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📧</div>
+              <div><div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px;">Email</div><a href="mailto:info@savetime.com" style="color:var(--text-primary);font-weight:600;">info@savetime.com</a></div>
+            </div>
+            <div style="display:flex;gap:13px;align-items:flex-start;">
+              <div style="width:40px;height:40px;background:rgba(201,162,39,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📞</div>
+              <div><div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px;">Phone</div><a href="tel:+15551234567" style="color:var(--text-primary);font-weight:600;">+1 (555) 123-4567</a></div>
+            </div>
+            <div style="display:flex;gap:13px;align-items:flex-start;">
+              <div style="width:40px;height:40px;background:rgba(16,185,129,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">🕐</div>
+              <div><div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px;">Hours</div><div style="font-size:0.9rem;">Mon–Fri 9 AM – 6 PM EST</div></div>
+            </div>
+            <div style="display:flex;gap:13px;align-items:flex-start;">
+              <div style="width:40px;height:40px;background:rgba(139,92,246,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">📍</div>
+              <div><div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:3px;">Address</div><div style="font-size:0.9rem;">123 Language Street<br>Learning City, LC 12345</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--gradient-hero);border:none;">
+          <h3 style="color:white;margin-bottom:10px;">🎯 Free Consultation</h3>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin-bottom:16px;">Not sure which course is right for your level? Book a free 20-minute consultation with one of our English teachers.</p>
+          <button onclick="document.getElementById('cSubject').value='free_consultation';document.getElementById('contactForm').scrollIntoView({behavior:'smooth'});" class="btn btn-secondary btn-sm" style="width:100%;">Book Free Consultation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header"><span class="badge">FAQ</span><h2>Frequently Asked Questions</h2></div>
+    <div class="faq-list" style="max-width:720px;margin:0 auto;">
+      <div class="faq-item">
+        <button class="faq-question">How do I know which English level course is right for me?</button>
+        <div class="faq-answer"><p>We recommend starting with our free consultation. You can also take our level assessment on the courses page — it takes 5 minutes and accurately places you in the right course.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I access courses on my phone or tablet?</button>
+        <div class="faq-answer"><p>Yes! Save Time is fully optimized for all devices — desktop, tablet, and mobile. Your progress syncs automatically across all your devices.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do I get a certificate when I finish a course?</button>
+        <div class="faq-answer"><p>Every completed course comes with a professional certificate that you can download, print, and share on LinkedIn. Employers recognize our certificates worldwide.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What is your refund policy?</button>
+        <div class="faq-answer"><p>We offer a full 30-day money-back guarantee on all courses. If you're not satisfied, contact us within 30 days for a full refund — no questions asked.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do I get lifetime access after purchasing?</button>
+        <div class="faq-answer"><p>Yes! Once you purchase a course, you have lifetime access to all materials including any future updates to the course content.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Are there live sessions with teachers?</button>
+        <div class="faq-answer"><p>Yes. Pro Learner and Group plan students get weekly live Q&A sessions and speaking practice sessions with our certified English teachers.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="footer-logo-text">Save <span>Time</span></span></div><p class="footer-desc">Save time, learn English fast.</p><div class="footer-social"><a href="#" class="social-link">f</a><a href="#" class="social-link">▶</a></div></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="courses.html">Courses</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Courses</h4><ul class="footer-links"><li><a href="courses.html">Beginner English</a></li><li><a href="courses.html">Business English</a></li><li><a href="courses.html">IELTS Prep</a></li></ul></div>
+      <div><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@savetime.com">info@savetime.com</a></li><li><a href="tel:+15551234567">+1 (555) 123-4567</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Save Time English. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+async function handleContact(e) {
+  e.preventDefault();
+  const btn = document.getElementById('contactBtn');
+  btn.innerHTML = '<span class="loader"></span> Sending…'; btn.disabled = true;
+  try {
+    await api.contacts.send({ name: document.getElementById('cName').value, email: document.getElementById('cEmail').value, phone: document.getElementById('cPhone').value, subject: document.getElementById('cSubject').value, message: document.getElementById('cMessage').value });
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactSuccess').style.display = 'block';
+  } catch (err) {
+    showToast(err.message || 'Failed to send message. Please try again.', 'error');
+    btn.innerHTML = 'Send Message →'; btn.disabled = false;
+  }
+}
+</script>
+<style>@media(max-width:900px){.contact-layout{grid-template-columns:1fr!important;}}</style>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Courses — Save Time</title>
+  <meta name="description" content="Browse all Save Time English courses — Beginner to Advanced, Business English, IELTS Preparation, Pronunciation, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="courses.html" class="nav-link active">Courses</a></li>
+      <li><a href="testimonials.html" class="nav-link">Reviews</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div><button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button></div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>English Courses</h1>
+    <p>Find the right course for your level and goals. Expert teachers, real practice, proven results.</p>
+    <div style="max-width:520px;margin:24px auto 0;display:flex;gap:10px;">
+      <div class="search-box" style="flex:1;">
+        <svg class="search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" class="form-control" placeholder="Search courses..." style="padding-left:40px;background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:white;" oninput="handleSearch()">
+      </div>
+      <button class="btn btn-secondary" onclick="loadCourses()">Search</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:24px;">
+      <div class="filter-bar" id="levelFilters" style="margin-bottom:0;">
+        <button class="filter-chip active" data-level="" onclick="filterByLevel(this,'')">All Courses</button>
+        <button class="filter-chip" data-level="beginner" onclick="filterByLevel(this,'beginner')">🌱 Beginner</button>
+        <button class="filter-chip" data-level="pre-intermediate" onclick="filterByLevel(this,'pre-intermediate')">📗 Pre-Intermediate</button>
+        <button class="filter-chip" data-level="intermediate" onclick="filterByLevel(this,'intermediate')">📘 Intermediate</button>
+        <button class="filter-chip" data-level="upper-intermediate" onclick="filterByLevel(this,'upper-intermediate')">🎯 Upper-Intermediate</button>
+        <button class="filter-chip" data-level="advanced" onclick="filterByLevel(this,'advanced')">🏆 Advanced</button>
+        <button class="filter-chip" data-level="all-levels" onclick="filterByLevel(this,'all-levels')">🌐 All Levels</button>
+      </div>
+      <select id="sortFilter" class="form-control" style="width:auto;min-width:140px;" onchange="loadCourses()">
+        <option value="">Most Popular</option>
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+      </select>
+    </div>
+
+    <p id="resultsCount" style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px;"></p>
+
+    <div class="courses-grid" id="coursesGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 14px;"></div>Loading courses...</div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="footer-logo-text">Save <span>Time</span></span></div><p class="footer-desc">Save time, learn English fast.</p><div class="footer-social"><a href="#" class="social-link">f</a><a href="#" class="social-link">▶</a></div></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="courses.html">Courses</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Levels</h4><ul class="footer-links"><li><a href="?level=beginner">Beginner</a></li><li><a href="?level=intermediate">Intermediate</a></li><li><a href="?level=advanced">Advanced</a></li><li><a href="?level=upper-intermediate">Business English</a></li></ul></div>
+      <div><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@savetime.com">info@savetime.com</a></li><li><a href="tel:+15551234567">+1 (555) 123-4567</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Save Time English. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+let currentPage = 1, currentLevel = '', currentSearch = '';
+const levelColors = { beginner:'#10b981','pre-intermediate':'#3b82f6',intermediate:'#f59e0b','upper-intermediate':'#8b5cf6',advanced:'#ef4444','all-levels':'#06b6d4' };
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('level')) {
+  currentLevel = urlParams.get('level');
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c.dataset.level === currentLevel));
+}
+
+function filterByLevel(el, level) {
+  currentLevel = level; currentPage = 1;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  loadCourses();
+}
+
+let searchTimer;
+function handleSearch() { clearTimeout(searchTimer); searchTimer = setTimeout(() => { currentPage = 1; loadCourses(); }, 400); }
+
+async function loadCourses() {
+  currentSearch = document.getElementById('searchInput')?.value || '';
+  const grid = document.getElementById('coursesGrid');
+  grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 14px;"></div>Loading...</div>';
+  try {
+    const params = { page: currentPage, limit: 9 };
+    if (currentSearch) params.search = currentSearch;
+    if (currentLevel) params.level = currentLevel;
+    const res = await api.courses.list(params);
+    const { courses, pagination } = res.data;
+    document.getElementById('resultsCount').textContent = `Showing ${courses.length} of ${pagination.total} English courses`;
+    if (!courses.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;"><div style="font-size:3rem;margin-bottom:14px;">🔍</div><h3>No courses found</h3><p style="color:var(--text-muted);">Try a different search or level filter</p></div>';
+      return;
+    }
+    grid.innerHTML = courses.map(c => renderCourseCard(c)).join('');
+    renderPagination(pagination);
+  } catch {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">Could not load courses. Please make sure the server is running.</div>';
+  }
+}
+
+function renderPagination(p) {
+  const el = document.getElementById('pagination');
+  if (p.pages <= 1) { el.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="changePage(${p.page-1})" ${p.page<=1?'disabled':''}>‹</button>`;
+  for (let i = 1; i <= p.pages; i++) html += `<button class="page-btn ${i===p.page?'active':''}" onclick="changePage(${i})">${i}</button>`;
+  html += `<button class="page-btn" onclick="changePage(${p.page+1})" ${p.page>=p.pages?'disabled':''}>›</button>`;
+  el.innerHTML = html;
+}
+function changePage(p) { currentPage = p; loadCourses(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function renderCourseCard(c) {
+  const discount = c.original_price > c.price ? Math.round((1 - c.price / c.original_price) * 100) : 0;
+  const lc = levelColors[c.level] || '#3b82f6';
+  return `<div class="course-card" onclick="window.location.href='course-detail.html?slug=${c.slug}'" style="cursor:pointer;">
+    <div class="course-card-img">
+      ${c.thumbnail ? `<img src="${c.thumbnail}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;">` : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#0d1f4e,#1a3c8f);display:flex;align-items:center;justify-content:center;font-size:3rem;">🇬🇧</div>`}
+      ${discount > 0 ? `<span class="course-badge">${discount}% OFF</span>` : ''}
+      ${c.enrolled ? `<span class="course-badge" style="left:auto;right:11px;background:var(--success);">✓ Enrolled</span>` : ''}
+    </div>
+    <div class="course-card-body">
+      <div class="course-meta"><span style="font-size:0.7rem;font-weight:700;background:${lc}18;color:${lc};padding:3px 10px;border-radius:100px;text-transform:capitalize;">${c.level}</span></div>
+      <h3 class="course-card-title">${c.title}</h3>
+      <p class="course-card-desc">${c.short_description || c.description || ''}</p>
+      <div class="course-instructor"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>${c.instructor_name || 'Instructor'}</div>
+      <div class="course-stats">
+        <span class="rating-stars">${'★'.repeat(Math.round(c.rating||0))}</span>
+        <span>${c.rating||0} (${(c.rating_count||0).toLocaleString()})</span>
+        <span>⏱ ${c.duration||'Self-paced'}</span>
+        <span>👥 ${(c.total_students||0).toLocaleString()}</span>
+      </div>
+      <div class="course-card-footer">
+        <div><span class="course-price-current">${c.price>0?'$'+c.price:'Free'}</span>${c.original_price>c.price?`<span class="course-price-original">$${c.original_price}</span>`:''}</div>
+        <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();window.location.href='course-detail.html?slug=${c.slug}'">View Course</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+loadCourses();
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard — Save Time English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body{display:flex;flex-direction:column;min-height:100vh;}
+    .dash-layout{display:flex;flex:1;padding-top:68px;}
+    .dash-sidebar{width:240px;flex-shrink:0;background:var(--bg-card);border-right:1px solid var(--border);height:calc(100vh - 68px);position:sticky;top:68px;overflow-y:auto;padding:20px 0;}
+    .dash-nav-item{display:flex;align-items:center;gap:11px;padding:10px 20px;font-size:0.875rem;font-weight:500;color:var(--text-secondary);cursor:pointer;border:none;background:none;width:100%;text-align:left;transition:all 0.15s;}
+    .dash-nav-item:hover{background:var(--bg-secondary);color:var(--text-primary);}
+    .dash-nav-item.active{background:rgba(42,91,196,0.1);color:var(--primary-light);border-right:3px solid var(--primary-light);}
+    .dash-nav-icon{font-size:1.05rem;width:20px;text-align:center;}
+    .dash-main{flex:1;overflow-y:auto;padding:28px 32px;}
+    .dash-section{display:none;}
+    .dash-section.active{display:block;}
+    .progress-bar-wrap{background:var(--border);border-radius:100px;height:7px;overflow:hidden;}
+    .progress-bar-fill{height:100%;border-radius:100px;background:var(--gradient-primary);transition:width 0.5s ease;}
+    .cert-card{background:var(--gradient-hero);border-radius:var(--radius-lg);padding:22px;color:white;position:relative;overflow:hidden;}
+    @media(max-width:768px){.dash-layout{flex-direction:column;}.dash-sidebar{width:100%;height:auto;position:static;flex-direction:row;display:flex;overflow-x:auto;padding:6px;border-right:none;border-bottom:1px solid var(--border);}.dash-nav-item{white-space:nowrap;border-right:none!important;border-bottom:none!important;}.dash-main{padding:18px;}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar scrolled" id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:100;">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <div class="nav-actions" style="margin-left:auto;">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <div style="display:flex;align-items:center;gap:9px;">
+        <div id="navAvatar" style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;"></div>
+        <span id="navName" style="font-size:0.88rem;font-weight:600;color:var(--text-primary);"></span>
+      </div>
+      <button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div style="padding:0 16px 16px;border-bottom:1px solid var(--border);margin-bottom:8px;">
+      <div id="sideAvatar" style="width:52px;height:52px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.1rem;margin-bottom:9px;"></div>
+      <div id="sideName" style="font-weight:700;font-size:0.9rem;"></div>
+      <div style="font-size:0.76rem;color:var(--text-muted);">Student</div>
+    </div>
+    <button class="dash-nav-item active" onclick="showSection('overview')"><span class="dash-nav-icon">📊</span>Overview</button>
+    <button class="dash-nav-item" onclick="showSection('courses')"><span class="dash-nav-icon">📚</span>My Courses</button>
+    <button class="dash-nav-item" onclick="showSection('certificates')"><span class="dash-nav-icon">📜</span>Certificates</button>
+    <button class="dash-nav-item" onclick="showSection('profile')"><span class="dash-nav-icon">👤</span>Profile</button>
+    <button class="dash-nav-item" onclick="showSection('password')"><span class="dash-nav-icon">🔒</span>Change Password</button>
+    <div style="border-top:1px solid var(--border);margin:8px 0;padding-top:8px;">
+      <button class="dash-nav-item" onclick="window.location.href='courses.html'"><span class="dash-nav-icon">🔍</span>Browse Courses</button>
+      <button class="dash-nav-item" onclick="auth.logout()"><span class="dash-nav-icon">🚪</span>Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="dash-main">
+    <!-- Overview -->
+    <div class="dash-section active" id="sec-overview">
+      <div style="margin-bottom:24px;">
+        <h2 id="welcomeMsg" style="margin-bottom:4px;">Welcome back!</h2>
+        <p style="color:var(--text-muted);font-size:0.88rem;">Continue your English learning journey.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;" class="stats-cards">
+        <div class="card" style="padding:18px;"><div style="font-size:1.6rem;font-weight:900;color:var(--primary-light);" id="statEnrolled">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Courses Enrolled</div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:1.6rem;font-weight:900;color:var(--success);" id="statCompleted">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Completed</div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:1.6rem;font-weight:900;color:var(--secondary);" id="statCerts">0</div><div style="font-size:0.78rem;color:var(--text-muted);">Certificates</div></div>
+        <div class="card" style="padding:18px;"><div style="font-size:1.6rem;font-weight:900;color:#8b5cf6;" id="statProgress">0%</div><div style="font-size:0.78rem;color:var(--text-muted);">Avg. Progress</div></div>
+      </div>
+      <h3 style="margin-bottom:16px;">Continue Learning</h3>
+      <div id="continueGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+        <div style="color:var(--text-muted);font-size:0.88rem;padding:20px;"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading…</div>
+      </div>
+    </div>
+
+    <!-- My Courses -->
+    <div class="dash-section" id="sec-courses">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;">
+        <h2>My Courses</h2>
+        <a href="courses.html" class="btn btn-primary btn-sm">+ Enroll in More</a>
+      </div>
+      <div id="myCoursesList">
+        <div style="text-align:center;padding:40px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading…</div>
+      </div>
+    </div>
+
+    <!-- Certificates -->
+    <div class="dash-section" id="sec-certificates">
+      <h2 style="margin-bottom:22px;">My Certificates</h2>
+      <div id="certList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;">
+        <div style="text-align:center;padding:40px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading…</div>
+      </div>
+    </div>
+
+    <!-- Profile -->
+    <div class="dash-section" id="sec-profile">
+      <h2 style="margin-bottom:22px;">Edit Profile</h2>
+      <div class="card" style="max-width:520px;">
+        <form onsubmit="saveProfile(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="profileName" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="profileEmail" readonly style="opacity:0.6;cursor:not-allowed;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="profilePhone" placeholder="+1 (555) ...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">About Me</label>
+            <textarea class="form-control" id="profileBio" rows="3" placeholder="Tell us about your English learning goals…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="profileBtn">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="dash-section" id="sec-password">
+      <h2 style="margin-bottom:22px;">Change Password</h2>
+      <div class="card" style="max-width:440px;">
+        <form onsubmit="changePassword(event)">
+          <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="pwCurrent" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" id="pwNew" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="pwConfirm" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="pwBtn">Update Password</button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+if (!auth.isLoggedIn()) window.location.href = 'auth.html?mode=login';
+
+const user = auth.getUser();
+if (user) {
+  document.getElementById('navAvatar').textContent = user.name[0];
+  document.getElementById('navName').textContent = user.name;
+  document.getElementById('sideAvatar').textContent = user.name[0];
+  document.getElementById('sideName').textContent = user.name;
+  document.getElementById('welcomeMsg').textContent = 'Welcome back, ' + user.name.split(' ')[0] + '!';
+  document.getElementById('profileName').value = user.name;
+  document.getElementById('profileEmail').value = user.email;
+  if (user.phone) document.getElementById('profilePhone').value = user.phone;
+  if (user.bio) document.getElementById('profileBio').value = user.bio;
+}
+
+function showSection(id) {
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.dash-nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (id === 'courses') loadMyCourses();
+  if (id === 'certificates') loadCertificates();
+}
+
+async function loadDashboard() {
+  try {
+    const res = await api.enrollments.my();
+    const enrollments = res.data.enrollments || [];
+    document.getElementById('statEnrolled').textContent = enrollments.length;
+    const completed = enrollments.filter(e => e.progress === 100);
+    document.getElementById('statCompleted').textContent = completed.length;
+    document.getElementById('statCerts').textContent = completed.length;
+    const avg = enrollments.length ? Math.round(enrollments.reduce((s, e) => s + (e.progress || 0), 0) / enrollments.length) : 0;
+    document.getElementById('statProgress').textContent = avg + '%';
+
+    const continueGrid = document.getElementById('continueGrid');
+    const inProgress = enrollments.filter(e => e.progress < 100).slice(0, 4);
+    if (!inProgress.length) {
+      continueGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:30px;"><div style="font-size:2.5rem;margin-bottom:12px;">🎓</div><p style="color:var(--text-muted);">No courses in progress yet.</p><a href="courses.html" class="btn btn-primary btn-sm" style="margin-top:10px;">Browse Courses</a></div>`;
+      return;
+    }
+    continueGrid.innerHTML = inProgress.map(e => `
+      <div class="card" style="padding:18px;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+          <div style="width:42px;height:42px;border-radius:10px;background:var(--gradient-hero);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;">🇬🇧</div>
+          <div style="min-width:0;"><div style="font-weight:700;font-size:0.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${e.course_title}</div><div style="font-size:0.75rem;color:var(--text-muted);text-transform:capitalize;">${e.course_level}</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.76rem;color:var(--text-muted);">Progress</span><span style="font-size:0.8rem;font-weight:700;color:var(--primary-light);">${e.progress || 0}%</span></div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${e.progress||0}%"></div></div>
+        <a href="course-detail.html?slug=${e.course_slug}" class="btn btn-primary btn-sm" style="width:100%;margin-top:14px;display:block;text-align:center;">Continue →</a>
+      </div>`).join('');
+  } catch { document.getElementById('continueGrid').innerHTML = '<p style="color:var(--text-muted);font-size:0.88rem;">Could not load dashboard. Start the backend server.</p>'; }
+}
+
+async function loadMyCourses() {
+  const el = document.getElementById('myCoursesList');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading…</div>';
+  try {
+    const res = await api.enrollments.my();
+    const enrollments = res.data.enrollments || [];
+    if (!enrollments.length) { el.innerHTML = `<div style="text-align:center;padding:40px;"><div style="font-size:2.5rem;margin-bottom:12px;">📚</div><p style="color:var(--text-muted);">You haven't enrolled in any courses yet.</p><a href="courses.html" class="btn btn-primary" style="margin-top:12px;">Browse Courses</a></div>`; return; }
+    el.innerHTML = `<div style="display:flex;flex-direction:column;gap:14px;">${enrollments.map(e => `
+      <div class="card" style="padding:18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <div style="width:52px;height:52px;border-radius:12px;background:var(--gradient-hero);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🇬🇧</div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-weight:700;margin-bottom:3px;">${e.course_title}</div>
+          <div style="font-size:0.78rem;color:var(--text-muted);text-transform:capitalize;margin-bottom:9px;">${e.course_level} · Enrolled ${formatDate(e.enrolled_at)}</div>
+          <div style="display:flex;align-items:center;gap:10px;"><div class="progress-bar-wrap" style="flex:1;"><div class="progress-bar-fill" style="width:${e.progress||0}%"></div></div><span style="font-size:0.8rem;font-weight:700;color:var(--primary-light);white-space:nowrap;">${e.progress||0}%</span></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-shrink:0;">
+          ${e.progress === 100 ? '<span style="font-size:0.78rem;font-weight:700;background:rgba(16,185,129,0.12);color:var(--success);padding:4px 11px;border-radius:100px;">✓ Completed</span>' : ''}
+          <a href="course-detail.html?slug=${e.course_slug}" class="btn btn-primary btn-sm">Continue</a>
+        </div>
+      </div>`).join('')}</div>`;
+  } catch { el.innerHTML = '<p style="color:var(--text-muted);">Could not load courses.</p>'; }
+}
+
+async function loadCertificates() {
+  const el = document.getElementById('certList');
+  try {
+    const res = await api.enrollments.my();
+    const completed = (res.data.enrollments || []).filter(e => e.progress === 100);
+    if (!completed.length) { el.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;"><div style="font-size:2.5rem;margin-bottom:12px;">📜</div><p style="color:var(--text-muted);">Complete a course to earn your first certificate!</p><a href="courses.html" class="btn btn-primary" style="margin-top:12px;">Browse Courses</a></div>`; return; }
+    el.innerHTML = completed.map(e => `
+      <div class="cert-card">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(201,162,39,0.15);border-radius:50%;filter:blur(30px);"></div>
+        <div style="font-size:2rem;margin-bottom:10px;">📜</div>
+        <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.55);margin-bottom:4px;">Certificate of Completion</div>
+        <div style="font-weight:800;font-size:1rem;color:white;margin-bottom:5px;">${e.course_title}</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);margin-bottom:16px;">Completed on ${formatDate(e.completed_at || e.enrolled_at)}</div>
+        <button onclick="downloadCert('${e.course_title}','${user?.name||'Student'}')" class="btn btn-secondary btn-sm">Download PDF</button>
+      </div>`).join('');
+  } catch { el.innerHTML = '<p style="color:var(--text-muted);">Could not load certificates.</p>'; }
+}
+
+function downloadCert(course, name) { showToast('Certificate download coming soon!', 'info'); }
+
+async function saveProfile(e) {
+  e.preventDefault();
+  const btn = document.getElementById('profileBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    const res = await api.auth.updateProfile({ name: document.getElementById('profileName').value, phone: document.getElementById('profilePhone').value, bio: document.getElementById('profileBio').value });
+    const updated = { ...auth.getUser(), ...res.data.user };
+    localStorage.setItem('edu_user', JSON.stringify(updated));
+    showToast('Profile updated!', 'success');
+  } catch (err) { showToast(err.message || 'Failed to update profile', 'error'); }
+  btn.innerHTML = 'Save Changes'; btn.disabled = false;
+}
+
+async function changePassword(e) {
+  e.preventDefault();
+  if (document.getElementById('pwNew').value !== document.getElementById('pwConfirm').value) { showToast('Passwords do not match', 'error'); return; }
+  const btn = document.getElementById('pwBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    await api.auth.changePassword({ currentPassword: document.getElementById('pwCurrent').value, newPassword: document.getElementById('pwNew').value });
+    showToast('Password updated successfully!', 'success');
+    document.getElementById('pwCurrent').value = '';
+    document.getElementById('pwNew').value = '';
+    document.getElementById('pwConfirm').value = '';
+  } catch (err) { showToast(err.message || 'Failed to change password', 'error'); }
+  btn.innerHTML = 'Update Password'; btn.disabled = false;
+}
+
+function formatDate(ts) {
+  if (!ts) return '';
+  return new Date(ts * 1000).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+
+loadDashboard();
+</script>
+</body>
+</html>

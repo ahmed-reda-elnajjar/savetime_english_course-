@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save Time — Learn English Fast | Expert Online English Courses</title>
+  <meta name="description" content="Save Time is the fastest way to learn English online. Expert-led courses for all levels — beginner to advanced, business English, IELTS prep and more. Join 12,000+ students.">
+  <meta name="keywords" content="learn English online, English courses, IELTS preparation, business English, English for beginners">
+  <meta property="og:title" content="Save Time — Learn English Fast">
+  <meta property="og:description" content="Expert-led English courses for all levels. Join 12,000+ students who speak with confidence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <span class="nav-logo-text">Save <span>Time</span></span>
+    </a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="courses.html" class="nav-link">Courses</a></li>
+      <li><a href="testimonials.html" class="nav-link">Reviews</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" title="Toggle theme"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;">
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div>
+        <button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">⏱ The Fastest Way to Learn English</div>
+      <h1>Speak English Confidently — <span>Faster Than You Think</span></h1>
+      <p class="hero-subtitle">Expert-led English courses for all levels. From complete beginner to business professional — our proven methods get you speaking, reading, and writing with confidence.</p>
+      <div class="hero-actions">
+        <a href="courses.html" class="btn btn-secondary btn-lg">🎓 Explore Courses</a>
+        <a href="contact.html" class="btn btn-white btn-lg">💬 Free Consultation</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-number">12K+</span><span class="hero-stat-label">Students</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">8</span><span class="hero-stat-label">Courses</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">98%</span><span class="hero-stat-label">Satisfaction</span></div>
+        <div class="hero-stat"><span class="hero-stat-number">4.9★</span><span class="hero-stat-label">Rating</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <div style="width:44px;height:44px;background:var(--gradient-gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;">🇬🇧</div>
+          <div>
+            <div style="color:white;font-weight:700;font-size:0.95rem;">English Courses</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:0.76rem;">All levels available</div>
+          </div>
+        </div>
+        <div id="heroCourseMini">
+          <div class="hero-course-item">
+            <div class="level-pill level-beginner">Beginner</div>
+            <div style="flex:1;"><div style="color:white;font-size:0.87rem;font-weight:600;">English for Absolute Beginners</div><div style="color:rgba(255,255,255,0.45);font-size:0.72rem;">⭐ 4.9 · 3,800 students</div></div>
+            <div style="color:#f0c040;font-weight:700;font-size:0.85rem;">$49</div>
+          </div>
+          <div class="hero-course-item">
+            <div class="level-pill level-business">Business</div>
+            <div style="flex:1;"><div style="color:white;font-size:0.87rem;font-weight:600;">Business English Professional</div><div style="color:rgba(255,255,255,0.45);font-size:0.72rem;">⭐ 4.9 · 1,750 students</div></div>
+            <div style="color:#f0c040;font-weight:700;font-size:0.85rem;">$99</div>
+          </div>
+          <div class="hero-course-item">
+            <div class="level-pill level-advanced">Advanced</div>
+            <div style="flex:1;"><div style="color:white;font-size:0.87rem;font-weight:600;">IELTS Preparation — Band 7+</div><div style="color:rgba(255,255,255,0.45);font-size:0.72rem;">⭐ 4.8 · 1,420 students</div></div>
+            <div style="color:#f0c040;font-weight:700;font-size:0.85rem;">$119</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-floating hero-floating-1">
+        <span style="font-size:1.3rem;">🏆</span>
+        <div><div style="font-size:0.78rem;font-weight:700;color:#0f172a;">Certified Teachers</div><div style="font-size:0.68rem;color:#64748b;">Native & near-native</div></div>
+      </div>
+      <div class="hero-floating hero-floating-2">
+        <span style="font-size:1.3rem;">📜</span>
+        <div><div style="font-size:0.78rem;font-weight:700;color:#0f172a;">Certificate Included</div><div style="font-size:0.68rem;color:#64748b;">All courses</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Levels overview -->
+<section class="section-sm" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <p style="text-align:center;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:20px;">Find the right level for you</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="courses.html?level=beginner" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">🌱 Beginner</a>
+      <a href="courses.html?level=pre-intermediate" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">📗 Pre-Intermediate</a>
+      <a href="courses.html?level=intermediate" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">📘 Intermediate</a>
+      <a href="courses.html?level=upper-intermediate" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">🎯 Upper-Intermediate</a>
+      <a href="courses.html?level=advanced" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);font-size:0.85rem;font-weight:500;transition:all 0.2s;" onmouseover="this.style.borderColor='var(--primary)';this.style.color='var(--primary)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">🏆 Advanced</a>
+      <a href="courses.html" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;border:1.5px solid var(--secondary);background:rgba(201,162,39,0.07);color:var(--secondary);font-size:0.85rem;font-weight:700;transition:all 0.2s;">💼 Business English</a>
+    </div>
+  </div>
+</section>
+
+<!-- Why Save Time -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Why Save Time</span>
+      <h2>The Smarter Way to Learn English</h2>
+      <p>Our proven method helps you learn English 3× faster than traditional classrooms — with expert teachers, real practice, and personalized support.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-up">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3>Native & Expert Teachers</h3>
+        <p>Learn from certified native English teachers and experienced language educators with proven track records of student success.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="feature-icon">🗣️</div>
+        <h3>Real Speaking Practice</h3>
+        <p>Live speaking sessions, pronunciation coaching, and conversation practice — not just grammar drills. You'll actually speak English.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-icon">⚡</div>
+        <h3>Learn 3× Faster</h3>
+        <p>Our spaced repetition and immersive learning techniques are scientifically proven to accelerate language acquisition significantly.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-icon">📱</div>
+        <h3>Learn Anywhere, Anytime</h3>
+        <p>Access all lessons on any device. Study on your commute, during lunch, or whenever works best for your schedule.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+        <div class="feature-icon">📜</div>
+        <h3>Recognized Certificates</h3>
+        <p>Earn professional certificates for every course you complete — recognized by employers worldwide and shareable on LinkedIn.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+        <div class="feature-icon">💰</div>
+        <h3>30-Day Money Back</h3>
+        <p>Not satisfied? Get a full refund within 30 days, no questions asked. We believe in our method — and you should too.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Courses -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Our Courses</span>
+      <h2>All English Levels Covered</h2>
+      <p>From your first words to boardroom-level English — we have the right course for where you are and where you want to go.</p>
+    </div>
+    <div class="courses-grid" id="featuredCoursesGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading courses...</div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="courses.html" class="btn btn-primary btn-lg">View All Courses →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div data-aos="fade-up"><span class="stat-number" data-count="12000">0</span><span class="stat-label">Students Worldwide</span></div>
+      <div data-aos="fade-up" data-aos-delay="100"><span class="stat-number" data-count="8">0</span><span class="stat-label">Expert Courses</span></div>
+      <div data-aos="fade-up" data-aos-delay="200"><span class="stat-number" data-count="98">0</span><span class="stat-label">% Student Satisfaction</span></div>
+      <div data-aos="fade-up" data-aos-delay="300"><span class="stat-number" data-count="87">0</span><span class="stat-label">% Report Better Jobs</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Student Stories</span>
+      <h2>Real Students, Real Results</h2>
+      <p>See how Save Time transformed the English skills — and the lives — of students around the world.</p>
+    </div>
+    <div class="testimonials-grid" id="homeTestimonialsGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">Loading reviews...</div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="testimonials.html" class="btn btn-outline btn-lg">Read All Stories →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1;">
+    <span class="badge" style="background:rgba(201,162,39,0.2);color:#f0c040;border-color:rgba(201,162,39,0.35);margin-bottom:18px;display:inline-block;">Start Today — Free Consultation</span>
+    <h2 style="margin-bottom:14px;">Ready to Speak English with Confidence?</h2>
+    <p>Join 12,000+ students who transformed their English. Book a free consultation call and we'll help you choose the right course.</p>
+    <div class="cta-actions" style="margin-top:28px;">
+      <a href="courses.html" class="btn btn-secondary btn-lg">🚀 Browse Courses</a>
+      <a href="contact.html" class="btn btn-white btn-lg">📞 Free Consultation</a>
+    </div>
+    <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:16px;">30-day money-back guarantee · No credit card required to book</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <span class="footer-logo-text">Save <span>Time</span></span>
+        </div>
+        <p class="footer-desc">Save time, learn English fast. Expert-led courses for all levels, from beginners to business professionals.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="Instagram">📷</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+          <a href="#" class="social-link" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">All Courses</a></li>
+          <li><a href="testimonials.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Courses</h4>
+        <ul class="footer-links">
+          <li><a href="courses.html?level=beginner">Beginner English</a></li>
+          <li><a href="courses.html?level=intermediate">Intermediate</a></li>
+          <li><a href="courses.html?level=advanced">Advanced</a></li>
+          <li><a href="courses.html">Business English</a></li>
+          <li><a href="courses.html">IELTS Preparation</a></li>
+          <li><a href="courses.html">Pronunciation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@savetime.com">info@savetime.com</a></li>
+          <li><a href="tel:+15551234567">+1 (555) 123-4567</a></li>
+          <li><a href="#">123 Language St, LC 12345</a></li>
+        </ul>
+        <div style="margin-top:18px;">
+          <h4>Newsletter</h4>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <input type="email" placeholder="Your email" style="flex:1;padding:9px 11px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);border-radius:8px;color:white;font-size:0.82rem;font-family:inherit;outline:none;">
+            <button onclick="showToast('Subscribed!','success')" class="btn btn-secondary btn-sm">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Save Time English. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await api.courses.list({ featured: true, limit: 6 });
+    const grid = document.getElementById('featuredCoursesGrid');
+    if (res.data.courses.length) {
+      grid.innerHTML = res.data.courses.map(c => renderCourseCard(c)).join('');
+    } else {
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);">No courses yet.</p>';
+    }
+  } catch { document.getElementById('featuredCoursesGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);">Start the backend server to load courses.</p>'; }
+
+  try {
+    const res = await api.testimonials.featured();
+    const grid = document.getElementById('homeTestimonialsGrid');
+    if (res.data.testimonials.length) {
+      grid.innerHTML = res.data.testimonials.slice(0, 3).map(t => renderTestimonialCard(t)).join('');
+    }
+  } catch {}
+});
+
+function renderCourseCard(c) {
+  const discount = c.original_price > c.price ? Math.round((1 - c.price / c.original_price) * 100) : 0;
+  const levelColors = { beginner: '#10b981', 'pre-intermediate': '#3b82f6', intermediate: '#f59e0b', 'upper-intermediate': '#8b5cf6', advanced: '#ef4444', 'all-levels': '#06b6d4' };
+  const levelColor = levelColors[c.level] || '#3b82f6';
+  return `<div class="course-card" onclick="window.location.href='course-detail.html?slug=${c.slug}'" style="cursor:pointer;">
+    <div class="course-card-img">
+      ${c.thumbnail ? `<img src="${c.thumbnail}" alt="${c.title}" style="width:100%;height:100%;object-fit:cover;">` : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#0d1f4e,#1a3c8f);display:flex;align-items:center;justify-content:center;font-size:3rem;">🇬🇧</div>`}
+      ${discount > 0 ? `<span class="course-badge">${discount}% OFF</span>` : ''}
+    </div>
+    <div class="course-card-body">
+      <div class="course-meta">
+        <span style="font-size:0.7rem;font-weight:700;background:${levelColor}18;color:${levelColor};padding:3px 10px;border-radius:100px;text-transform:capitalize;">${c.level}</span>
+      </div>
+      <h3 class="course-card-title">${c.title}</h3>
+      <p class="course-card-desc">${c.short_description || c.description || ''}</p>
+      <div class="course-instructor"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>${c.instructor_name || 'Instructor'}</div>
+      <div class="course-stats">
+        <span class="rating-stars">${'★'.repeat(Math.round(c.rating || 0))}</span>
+        <span>${c.rating || 0} (${(c.rating_count || 0).toLocaleString()})</span>
+        <span>⏱ ${c.duration || 'Self-paced'}</span>
+        <span>👥 ${(c.total_students || 0).toLocaleString()}</span>
+      </div>
+      <div class="course-card-footer">
+        <div>
+          <span class="course-price-current">${c.price > 0 ? '$' + c.price : 'Free'}</span>
+          ${c.original_price > c.price ? `<span class="course-price-original">$${c.original_price}</span>` : ''}
+        </div>
+        <button class="btn btn-primary btn-sm">Enroll Now</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderTestimonialCard(t) {
+  return `<div class="testimonial-card" data-aos="fade-up">
+    <div class="testimonial-quote">"</div>
+    <div class="testimonial-stars">${'★'.repeat(t.rating || 5)}</div>
+    <p class="testimonial-text">${t.content}</p>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar">${t.student_name[0]}</div>
+      <div><div class="testimonial-name">${t.student_name}</div><div class="testimonial-title">${t.student_title || ''}</div></div>
+    </div>
+    ${t.after_achievement ? `<div class="achievement-badge">🏆 ${t.after_achievement}</div>` : ''}
+  </div>`;
+}
+</script>
+</body>
+</html>

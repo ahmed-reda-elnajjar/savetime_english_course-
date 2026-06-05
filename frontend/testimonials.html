@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Reviews — Save Time English</title>
+  <meta name="description" content="Read real reviews from Save Time English students. See how our courses transformed lives around the world.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="courses.html" class="nav-link">Courses</a></li>
+      <li><a href="testimonials.html" class="nav-link active">Reviews</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div><button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button></div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <h1>Real Students. Real Results.</h1>
+    <p>12,000+ students from 50+ countries have transformed their English with Save Time.</p>
+    <div style="display:flex;justify-content:center;gap:32px;margin-top:24px;flex-wrap:wrap;">
+      <div style="text-align:center;"><div style="font-size:1.9rem;font-weight:900;color:#f0c040;">4.9★</div><div style="color:rgba(255,255,255,0.65);font-size:0.82rem;">Average Rating</div></div>
+      <div style="text-align:center;"><div style="font-size:1.9rem;font-weight:900;color:#f0c040;">12K+</div><div style="color:rgba(255,255,255,0.65);font-size:0.82rem;">Students</div></div>
+      <div style="text-align:center;"><div style="font-size:1.9rem;font-weight:900;color:#f0c040;">98%</div><div style="color:rgba(255,255,255,0.65);font-size:0.82rem;">Would Recommend</div></div>
+      <div style="text-align:center;"><div style="font-size:1.9rem;font-weight:900;color:#f0c040;">50+</div><div style="color:rgba(255,255,255,0.65);font-size:0.82rem;">Countries</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured stories -->
+<section class="section">
+  <div class="container">
+    <div class="section-header"><span class="badge">Success Stories</span><h2>From Struggle to Confidence</h2><p>Before and after stories from students who transformed their English — and their lives — with Save Time.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;" id="featuredStories"></div>
+  </div>
+</section>
+
+<!-- All reviews -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header"><span class="badge">All Reviews</span><h2>What Our Students Say</h2></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">
+      <button class="filter-chip active" onclick="filterReviews(this,0)">All Reviews</button>
+      <button class="filter-chip" onclick="filterReviews(this,5)">★★★★★ 5 Star</button>
+      <button class="filter-chip" onclick="filterReviews(this,4)">★★★★ 4 Star+</button>
+    </div>
+    <div class="testimonials-grid" id="reviewsGrid">
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 12px;"></div>Loading reviews...</div>
+    </div>
+    <div style="text-align:center;margin-top:28px;" id="loadMoreWrap">
+      <button class="btn btn-outline" onclick="loadMore()">Load More Reviews</button>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding:28px;background:rgba(42,91,196,0.05);border-radius:var(--radius-lg);border:1px dashed var(--border);">
+      <div style="font-size:2.2rem;margin-bottom:12px;">⭐</div>
+      <h3 style="margin-bottom:8px;">Share Your Story</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:18px;">Completed a Save Time course? We'd love to hear how it helped you.</p>
+      <button class="btn btn-primary" onclick="openReviewModal()">Write a Review</button>
+    </div>
+  </div>
+</section>
+
+<!-- Review Modal -->
+<div class="modal-overlay" id="reviewModal" onclick="closeModal('reviewModal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('reviewModal')">×</button>
+    <h2 style="margin-bottom:5px;">Share Your Experience</h2>
+    <p style="color:var(--text-muted);font-size:0.87rem;margin-bottom:22px;">Tell us how Save Time helped your English.</p>
+    <form onsubmit="submitReview(event)">
+      <div class="form-group">
+        <label class="form-label">Your Name *</label>
+        <input type="text" class="form-control" id="rName" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Title / Country</label>
+        <input type="text" class="form-control" id="rTitle" placeholder="e.g. Software Engineer, Egypt">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Course *</label>
+        <select class="form-control" id="rCourse" required><option value="">Select a course…</option></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Rating *</label>
+        <div style="display:flex;gap:8px;" id="starPicker">
+          <span style="font-size:1.8rem;cursor:pointer;color:#d1d5db;" data-star="1" onmouseover="hoverStar(1)" onmouseout="resetStars()" onclick="selectStar(1)">★</span>
+          <span style="font-size:1.8rem;cursor:pointer;color:#d1d5db;" data-star="2" onmouseover="hoverStar(2)" onmouseout="resetStars()" onclick="selectStar(2)">★</span>
+          <span style="font-size:1.8rem;cursor:pointer;color:#d1d5db;" data-star="3" onmouseover="hoverStar(3)" onmouseout="resetStars()" onclick="selectStar(3)">★</span>
+          <span style="font-size:1.8rem;cursor:pointer;color:#d1d5db;" data-star="4" onmouseover="hoverStar(4)" onmouseout="resetStars()" onclick="selectStar(4)">★</span>
+          <span style="font-size:1.8rem;cursor:pointer;color:#d1d5db;" data-star="5" onmouseover="hoverStar(5)" onmouseout="resetStars()" onclick="selectStar(5)">★</span>
+        </div>
+        <input type="hidden" id="rRating" value="0">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Review *</label>
+        <textarea class="form-control" id="rContent" rows="4" placeholder="How did Save Time help your English?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" id="reviewBtn" style="width:100%;">Submit Review</button>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="footer-logo-text">Save <span>Time</span></span></div><p class="footer-desc">Save time, learn English fast.</p></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="courses.html">Courses</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Courses</h4><ul class="footer-links"><li><a href="courses.html">Beginner English</a></li><li><a href="courses.html">Business English</a></li><li><a href="courses.html">IELTS Prep</a></li></ul></div>
+      <div><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@savetime.com">info@savetime.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Save Time English. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+let allReviews = [], filteredReviews = [], displayCount = 9, selectedStar = 0;
+
+const FEATURED = [
+  { name:'Ahmed Hassan', title:'Software Engineer, Egypt', before:'I could barely write a professional email in English — which cost me many job opportunities.', after:'I got promoted to a role leading English-speaking teams after just 3 months of study.', course:'Business English Professional', achievement:'Promotion + 40% salary increase' },
+  { name:'Maria Fernandez', title:'University Student, Colombia', before:'My IELTS score was 5.5 and my university applications kept getting rejected.', after:'I scored 7.5 on IELTS and got accepted to my dream university in Canada.', course:'IELTS Preparation — Band 7+', achievement:'IELTS Band 7.5 — Accepted to Canadian University' },
+  { name:'Nguyen Van Minh', title:'IT Professional, Vietnam', before:'I was afraid to speak English in meetings. I always relied on colleagues to translate for me.', after:'I now lead international project calls and have presented at a tech conference in Singapore.', course:'Advanced English Mastery', achievement:'Leads global team meetings in English' }
+];
+
+document.getElementById('featuredStories').innerHTML = FEATURED.map(s => `
+  <div class="card" data-aos="fade-up" style="border-top:3px solid var(--secondary);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+      <div style="background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius-sm);padding:12px;"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;color:#ef4444;margin-bottom:4px;">Before</div><p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.6;margin:0;">"${s.before}"</p></div>
+      <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15);border-radius:var(--radius-sm);padding:12px;"><div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;color:#10b981;margin-bottom:4px;">After</div><p style="font-size:0.82rem;color:var(--text-secondary);line-height:1.6;margin:0;">"${s.after}"</p></div>
+    </div>
+    <div class="achievement-badge" style="margin-bottom:14px;">🏆 ${s.achievement}</div>
+    <div style="display:flex;align-items:center;gap:11px;">
+      <div style="width:42px;height:42px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">${s.name[0]}</div>
+      <div><div style="font-weight:700;font-size:0.92rem;">${s.name}</div><div style="font-size:0.78rem;color:var(--text-muted);">${s.title}</div><div style="font-size:0.74rem;color:var(--primary-light);margin-top:2px;">Course: ${s.course}</div></div>
+    </div>
+  </div>`).join('');
+
+async function loadReviews() {
+  try {
+    const res = await api.testimonials.list({ limit: 50 });
+    allReviews = res.data.testimonials || [];
+    filteredReviews = [...allReviews];
+    renderReviews();
+  } catch { document.getElementById('reviewsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--text-muted);">Could not load reviews. Please start the backend server.</div>'; }
+}
+
+function filterReviews(el, minRating) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  filteredReviews = minRating === 0 ? [...allReviews] : allReviews.filter(r => r.rating >= minRating);
+  displayCount = 9;
+  renderReviews();
+}
+
+function renderReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  const show = filteredReviews.slice(0, displayCount);
+  if (!show.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No reviews found.</div>'; document.getElementById('loadMoreWrap').style.display='none'; return; }
+  grid.innerHTML = show.map(t => `
+    <div class="testimonial-card" data-aos="fade-up">
+      <div class="testimonial-quote">"</div>
+      <div class="testimonial-stars">${'★'.repeat(t.rating||5)}</div>
+      <p class="testimonial-text">${t.content}</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">${t.student_name[0]}</div>
+        <div><div class="testimonial-name">${t.student_name}</div><div class="testimonial-title">${t.student_title||''}</div></div>
+      </div>
+      ${t.after_achievement ? `<div class="achievement-badge" style="margin-top:12px;">🏆 ${t.after_achievement}</div>` : ''}
+    </div>`).join('');
+  document.getElementById('loadMoreWrap').style.display = displayCount >= filteredReviews.length ? 'none' : 'block';
+}
+
+function loadMore() { displayCount += 9; renderReviews(); }
+
+function openReviewModal() {
+  if (!auth.isLoggedIn()) { window.location.href = 'auth.html?mode=login'; return; }
+  openModal('reviewModal');
+  api.courses.list({ limit: 20 }).then(res => {
+    const sel = document.getElementById('rCourse');
+    sel.innerHTML = '<option value="">Select a course…</option>' + res.data.courses.map(c => `<option value="${c.id}">${c.title}</option>`).join('');
+  }).catch(() => {});
+  const u = auth.getUser();
+  if (u) document.getElementById('rName').value = u.name || '';
+}
+
+function hoverStar(n) { document.querySelectorAll('#starPicker span').forEach((s,i) => s.style.color = i < n ? '#f0c040' : '#d1d5db'); }
+function resetStars() { document.querySelectorAll('#starPicker span').forEach((s,i) => s.style.color = i < selectedStar ? '#f0c040' : '#d1d5db'); }
+function selectStar(n) { selectedStar = n; document.getElementById('rRating').value = n; resetStars(); }
+
+async function submitReview(e) {
+  e.preventDefault();
+  if (!selectedStar) { showToast('Please select a star rating', 'error'); return; }
+  const btn = document.getElementById('reviewBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    await api.testimonials.submit({ student_name: document.getElementById('rName').value, student_title: document.getElementById('rTitle').value, course_id: document.getElementById('rCourse').value, rating: selectedStar, content: document.getElementById('rContent').value });
+    closeModal('reviewModal');
+    showToast('Review submitted! It will appear after approval.', 'success');
+  } catch (err) {
+    showToast(err.message || 'Failed to submit review', 'error');
+    btn.innerHTML = 'Submit Review'; btn.disabled = false;
+  }
+}
+
+loadReviews();
+</script>
+</body>
+</html>

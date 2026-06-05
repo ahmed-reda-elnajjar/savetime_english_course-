@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — Save Time English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body style="background:var(--bg-secondary);">
+<div class="auth-page">
+  <div class="auth-card">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#0f172a,#1a3c8f);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;border:2px solid rgba(201,162,39,0.4);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div style="font-size:1.5rem;font-weight:900;color:var(--primary);">Save <span style="color:var(--secondary);">Time</span></div>
+      <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-top:4px;">Admin Panel</div>
+    </div>
+    <h2 style="text-align:center;margin-bottom:5px;">Admin Sign In</h2>
+    <p style="text-align:center;color:var(--text-muted);font-size:0.87rem;margin-bottom:22px;">Restricted access — administrators only</p>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label">Admin Email</label>
+        <input type="email" class="form-control" id="adminEmail" placeholder="admin@savetime.com" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <div style="position:relative;">
+          <input type="password" class="form-control" id="adminPassword" placeholder="Admin password" required>
+          <button type="button" onclick="const i=document.getElementById('adminPassword');i.type=i.type==='password'?'text':'password'" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;">👁</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:4px;" id="loginBtn">Sign In to Admin Panel</button>
+    </form>
+    <div style="background:rgba(201,162,39,0.07);border:1px solid rgba(201,162,39,0.2);border-radius:var(--radius-sm);padding:11px 13px;margin-top:14px;font-size:0.8rem;color:var(--text-secondary);">
+      <strong>Demo:</strong> admin@savetime.com / Admin@123456
+    </div>
+    <div style="text-align:center;margin-top:16px;"><a href="../index.html" style="font-size:0.8rem;color:var(--text-muted);">← Back to website</a></div>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script>
+if (auth.isLoggedIn() && auth.isAdmin()) window.location.href = 'dashboard.html';
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    const res = await api.auth.login(document.getElementById('adminEmail').value, document.getElementById('adminPassword').value);
+    if (res.data.user.role !== 'admin') {
+      showToast('Access denied. Admin accounts only.', 'error');
+      btn.innerHTML = 'Sign In to Admin Panel'; btn.disabled = false;
+      return;
+    }
+    auth.setSession(res.data.token, res.data.user);
+    window.location.href = 'dashboard.html';
+  } catch (err) {
+    showToast(err.message || 'Invalid credentials', 'error');
+    btn.innerHTML = 'Sign In to Admin Panel'; btn.disabled = false;
+  }
+}
+
+function showToast(msg, type) {
+  let c = document.querySelector('.toast-container');
+  if (!c) { c = document.createElement('div'); c.className = 'toast-container'; document.body.appendChild(c); }
+  const t = document.createElement('div'); t.className = `toast ${type}`;
+  t.innerHTML = `<span class="toast-icon">${type==='success'?'✓':'✕'}</span><span class="toast-msg">${msg}</span>`;
+  c.appendChild(t); setTimeout(() => t.remove(), 4000);
+}
+
+document.addEventListener('DOMContentLoaded', () => theme.init());
+</script>
+</body>
+</html>

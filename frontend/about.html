@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Save Time English</title>
+  <meta name="description" content="Learn about Save Time — our mission, our expert English teachers, and our proven teaching method.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link active">About</a></li>
+      <li><a href="courses.html" class="nav-link">Courses</a></li>
+      <li><a href="testimonials.html" class="nav-link">Reviews</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div><button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button></div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="page-header">
+  <div class="container">
+    <div class="breadcrumb" style="justify-content:center;margin-bottom:14px;"><a href="index.html">Home</a><span>›</span><span>About Us</span></div>
+    <h1>About Save Time</h1>
+    <p>We're on a mission to help every person speak English with confidence — faster than they ever thought possible.</p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;" class="about-story-grid">
+      <div data-aos="fade-right">
+        <span class="badge" style="margin-bottom:16px;display:inline-block;">Our Story</span>
+        <h2 style="margin-bottom:18px;">Born from a Simple Frustration</h2>
+        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:14px;">Save Time was founded by a group of language teachers and education technology experts who saw the same problem over and over: students spending years learning English in classrooms without being able to hold a real conversation.</p>
+        <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">We built Save Time around one core belief: the fastest path to English fluency combines expert instruction, real conversation practice, and smart technology — not endless grammar exercises from outdated textbooks.</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <div><div style="font-size:1.9rem;font-weight:900;color:var(--primary-light);">2019</div><div style="font-size:0.82rem;color:var(--text-muted);">Founded</div></div>
+          <div><div style="font-size:1.9rem;font-weight:900;color:var(--primary-light);">50+</div><div style="font-size:0.82rem;color:var(--text-muted);">Countries</div></div>
+          <div><div style="font-size:1.9rem;font-weight:900;color:var(--primary-light);">12K+</div><div style="font-size:0.82rem;color:var(--text-muted);">Students Taught</div></div>
+        </div>
+      </div>
+      <div data-aos="fade-left">
+        <div style="background:var(--gradient-hero);border-radius:var(--radius-xl);padding:36px;color:white;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:rgba(201,162,39,0.12);border-radius:50%;filter:blur(40px);"></div>
+          <div style="font-size:2.8rem;margin-bottom:14px;">🌍</div>
+          <h3 style="color:white;margin-bottom:10px;">Global English Learners</h3>
+          <p style="color:rgba(255,255,255,0.75);margin-bottom:22px;font-size:0.92rem;">Our students are learning English in 50+ countries. Every week, someone lands a new job, gets accepted to a foreign university, or closes an international business deal — because of skills they built with Save Time.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;font-weight:800;color:#f0c040;">87%</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.65);">Get better jobs</div></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;font-weight:800;color:#f0c040;">4.9★</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.65);">Average rating</div></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;font-weight:800;color:#f0c040;">98%</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.65);">Would recommend</div></div>
+            <div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;"><div style="font-size:1.4rem;font-weight:800;color:#f0c040;">3× faster</div><div style="font-size:0.78rem;color:rgba(255,255,255,0.65);">Vs. classroom</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header"><span class="badge">Our Purpose</span><h2>Mission & Vision</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;">
+      <div class="card" data-aos="fade-up" style="border-left:4px solid var(--primary-light);">
+        <div style="font-size:2.3rem;margin-bottom:14px;">🎯</div>
+        <h3 style="margin-bottom:10px;">Our Mission</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;">To make fluent English accessible to everyone, everywhere — through expert teaching, smart technology, and real-world practice that actually works. No wasted time. No boring textbooks. Just results.</p>
+      </div>
+      <div class="card" data-aos="fade-up" data-aos-delay="100" style="border-left:4px solid var(--secondary);">
+        <div style="font-size:2.3rem;margin-bottom:14px;">🔭</div>
+        <h3 style="margin-bottom:10px;">Our Vision</h3>
+        <p style="color:var(--text-secondary);line-height:1.8;">A world where language is never a barrier to opportunity. Where anyone — from any country, background, or starting level — can access the English skills they need to pursue their goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaching Method -->
+<section class="section">
+  <div class="container">
+    <div class="section-header"><span class="badge">How We Teach</span><h2>The Save Time Method</h2><p>Our 4-step approach is designed to get you speaking English fast — not just studying it.</p></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;" class="method-grid">
+      <div class="feature-card" data-aos="fade-up" style="text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(42,91,196,0.1);border:3px solid var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--primary-light);margin:0 auto 16px;">1</div>
+        <h3>Listen & Absorb</h3>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Immerse yourself in natural English through expert video lessons, real conversations, and audio content.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100" style="text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(201,162,39,0.12);border:3px solid var(--secondary);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--secondary);margin:0 auto 16px;">2</div>
+        <h3>Practice Speaking</h3>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Shadowing exercises, pronunciation drills, and live speaking sessions with teachers and fellow students.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200" style="text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(16,185,129,0.1);border:3px solid var(--success);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--success);margin:0 auto 16px;">3</div>
+        <h3>Get Corrected</h3>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Expert feedback on your speaking and writing — so you fix bad habits before they get reinforced.</p>
+      </div>
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="300" style="text-align:center;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(139,92,246,0.1);border:3px solid #8b5cf6;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#8b5cf6;margin:0 auto 16px;">4</div>
+        <h3>Use It Confidently</h3>
+        <p style="color:var(--text-secondary);font-size:0.88rem;">Apply your English in real situations — job interviews, business meetings, travel, and everyday life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="section-header"><span class="badge">Our Teachers</span><h2>Meet Your English Instructors</h2><p>Certified, experienced, and passionate about helping you succeed.</p></div>
+    <div class="team-grid">
+      <div class="team-card" data-aos="fade-up">
+        <div class="team-avatar">SM</div>
+        <div class="team-name">Ms. Sarah Mitchell</div>
+        <div class="team-role">Lead English Instructor</div>
+        <p class="team-bio">Native speaker, CELTA certified. 12 years teaching English as a second language. Specialist in beginner and intermediate learners.</p>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#c9a227,#f0c040);color:#0d1f4e;">JC</div>
+        <div class="team-name">Mr. James Carter</div>
+        <div class="team-role">Conversation & Fluency Coach</div>
+        <p class="team-bio">Former BBC journalist. Expert in natural conversation, accent reduction, and public speaking. Trained 2,000+ students.</p>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);">AC</div>
+        <div class="team-name">Dr. Amanda Clarke</div>
+        <div class="team-role">Business English Director</div>
+        <p class="team-bio">MBA, Cambridge. 15 years training executives at Fortune 500 companies in professional English communication.</p>
+      </div>
+      <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">DT</div>
+        <div class="team-name">Mr. David Thompson</div>
+        <div class="team-role">IELTS Specialist</div>
+        <p class="team-bio">IELTS examiner for 8 years. Expert in all 4 IELTS skills. Students achieve Band 7+ on their first attempt at 91%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section">
+  <div class="container">
+    <div class="section-header"><span class="badge">Why Us</span><h2>Why Students Choose Save Time</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;" class="why-grid">
+      <div style="display:flex;gap:14px;" data-aos="fade-up">
+        <div style="width:46px;height:46px;background:var(--gradient-primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">✅</div>
+        <div><h4 style="margin-bottom:7px;">Proven Results</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">87% of our students report getting a better job or promotion within 6 months. Our method works.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;" data-aos="fade-up" data-aos-delay="100">
+        <div style="width:46px;height:46px;background:var(--gradient-gold);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">⚡</div>
+        <div><h4 style="margin-bottom:7px;">3× Faster Learning</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">Our immersive method accelerates learning dramatically compared to traditional classroom study.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;" data-aos="fade-up" data-aos-delay="200">
+        <div style="width:46px;height:46px;background:linear-gradient(135deg,#10b981,#059669);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🔄</div>
+        <div><h4 style="margin-bottom:7px;">Lifetime Access</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">Pay once, access forever. All future course updates included. Revisit lessons whenever you need a refresher.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;" data-aos="fade-up" data-aos-delay="300">
+        <div style="width:46px;height:46px;background:linear-gradient(135deg,#06b6d4,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🗣️</div>
+        <div><h4 style="margin-bottom:7px;">Live Speaking Sessions</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">Weekly live Q&A and speaking practice sessions with teachers — not just pre-recorded videos.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;" data-aos="fade-up" data-aos-delay="400">
+        <div style="width:46px;height:46px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🌐</div>
+        <div><h4 style="margin-bottom:7px;">Global Student Community</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">Practice English with 12,000+ learners from around the world. Different accents, cultures, perspectives.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;" data-aos="fade-up" data-aos-delay="500">
+        <div style="width:46px;height:46px;background:linear-gradient(135deg,#ef4444,#dc2626);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🛡️</div>
+        <div><h4 style="margin-bottom:7px;">30-Day Guarantee</h4><p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">Not happy? Full refund within 30 days. No questions, no hassle. We stand behind every course we offer.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <h2 style="margin-bottom:14px;">Start Your English Journey Today</h2>
+    <p style="margin-bottom:28px;">Join 12,000+ students who are already speaking English with confidence.</p>
+    <div class="cta-actions">
+      <a href="courses.html" class="btn btn-secondary btn-lg">🚀 View Courses</a>
+      <a href="contact.html" class="btn btn-white btn-lg">💬 Free Consultation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="footer-logo-text">Save <span>Time</span></span></div><p class="footer-desc">Save time, learn English fast.</p><div class="footer-social"><a href="#" class="social-link">f</a><a href="#" class="social-link">📷</a><a href="#" class="social-link">▶</a></div></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="courses.html">Courses</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Courses</h4><ul class="footer-links"><li><a href="courses.html">Beginner English</a></li><li><a href="courses.html">Business English</a></li><li><a href="courses.html">IELTS Prep</a></li><li><a href="courses.html">Pronunciation</a></li></ul></div>
+      <div><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@savetime.com">info@savetime.com</a></li><li><a href="tel:+15551234567">+1 (555) 123-4567</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Save Time English. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<style>
+@media(max-width:768px){.about-story-grid{grid-template-columns:1fr!important;}.method-grid{grid-template-columns:1fr 1fr!important;}.why-grid{grid-template-columns:1fr!important;}}
+@media(max-width:480px){.method-grid{grid-template-columns:1fr!important;}}
+</style>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Save Time English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#1a3c8f,#c9a227);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <div style="font-size:1.5rem;font-weight:900;color:var(--primary);">Save <span style="color:var(--secondary);">Time</span></div>
+      <div style="color:var(--text-muted);font-size:0.82rem;margin-top:3px;">Save time, learn English fast</div>
+    </div>
+
+    <!-- Login -->
+    <div id="loginForm">
+      <h2 style="text-align:center;margin-bottom:5px;">Welcome Back</h2>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.87rem;margin-bottom:22px;">Continue your English learning journey</p>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="loginEmail" placeholder="your@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="display:flex;justify-content:space-between;">Password<a href="#" style="color:var(--primary-light);font-size:0.8rem;font-weight:400;">Forgot?</a></label>
+          <div style="position:relative;">
+            <input type="password" class="form-control" id="loginPassword" placeholder="Your password" required>
+            <button type="button" onclick="togglePassword('loginPassword')" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;margin-top:4px;" id="loginBtn">Sign In</button>
+      </form>
+      <div style="background:rgba(42,91,196,0.07);border:1px solid rgba(42,91,196,0.15);border-radius:var(--radius-sm);padding:11px 13px;margin-top:14px;font-size:0.8rem;color:var(--text-secondary);">
+        <strong>Demo Admin:</strong> admin@savetime.com / Admin@123456
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin:18px 0;"><div style="flex:1;height:1px;background:var(--border);"></div><span style="font-size:0.78rem;color:var(--text-muted);">or</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <p style="text-align:center;font-size:0.88rem;color:var(--text-secondary);">Don't have an account? <a href="#" onclick="switchMode('register')" style="color:var(--primary-light);font-weight:600;">Sign up free</a></p>
+    </div>
+
+    <!-- Register -->
+    <div id="registerForm" style="display:none;">
+      <h2 style="text-align:center;margin-bottom:5px;">Create Account</h2>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.87rem;margin-bottom:22px;">Join 12,000+ English learners worldwide</p>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="regName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="regEmail" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div style="position:relative;">
+            <input type="password" class="form-control" id="regPassword" placeholder="At least 6 characters" required oninput="checkStrength(this.value)">
+            <button type="button" onclick="togglePassword('regPassword')" style="position:absolute;right:11px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;">👁</button>
+          </div>
+          <div style="margin-top:5px;height:3px;border-radius:2px;background:var(--border);overflow:hidden;"><div id="strengthBar" style="height:100%;border-radius:2px;width:0;transition:all 0.3s;"></div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:18px;">
+          <input type="checkbox" id="agreeTerms" required style="cursor:pointer;margin-top:3px;">
+          <label for="agreeTerms" style="font-size:0.82rem;color:var(--text-secondary);cursor:pointer;">I agree to the <a href="#" style="color:var(--primary-light);">Terms</a> and <a href="#" style="color:var(--primary-light);">Privacy Policy</a></label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;" id="registerBtn">Create Account</button>
+      </form>
+      <div style="display:flex;align-items:center;gap:10px;margin:18px 0;"><div style="flex:1;height:1px;background:var(--border);"></div><span style="font-size:0.78rem;color:var(--text-muted);">or</span><div style="flex:1;height:1px;background:var(--border);"></div></div>
+      <p style="text-align:center;font-size:0.88rem;color:var(--text-secondary);">Already have an account? <a href="#" onclick="switchMode('login')" style="color:var(--primary-light);font-weight:600;">Sign in</a></p>
+    </div>
+
+    <div style="text-align:center;margin-top:14px;"><a href="index.html" style="font-size:0.8rem;color:var(--text-muted);">← Back to Save Time</a></div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+if (auth.isLoggedIn()) {
+  const u = auth.getUser();
+  window.location.href = u?.role === 'admin' ? 'admin/dashboard.html' : 'dashboard.html';
+}
+if (new URLSearchParams(window.location.search).get('mode') === 'register') switchMode('register');
+
+function switchMode(m) {
+  document.getElementById('loginForm').style.display = m === 'login' ? 'block' : 'none';
+  document.getElementById('registerForm').style.display = m === 'register' ? 'block' : 'none';
+}
+function togglePassword(id) { const i = document.getElementById(id); i.type = i.type === 'password' ? 'text' : 'password'; }
+function checkStrength(v) {
+  let s = 0;
+  if (v.length >= 6) s++; if (v.length >= 10) s++; if (/[A-Z]/.test(v)) s++; if (/[0-9]/.test(v)) s++;
+  const colors = ['#ef4444','#f97316','#f59e0b','#10b981'];
+  const bar = document.getElementById('strengthBar');
+  bar.style.width = (s * 25) + '%'; bar.style.background = colors[s - 1] || 'transparent';
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    const res = await api.auth.login(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value);
+    auth.setSession(res.data.token, res.data.user);
+    showToast('Welcome back, ' + res.data.user.name + '!', 'success');
+    setTimeout(() => window.location.href = res.data.user.role === 'admin' ? 'admin/dashboard.html' : 'dashboard.html', 700);
+  } catch (err) {
+    showToast(err.message || 'Invalid email or password', 'error');
+    btn.innerHTML = 'Sign In'; btn.disabled = false;
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const btn = document.getElementById('registerBtn');
+  btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
+  try {
+    const res = await api.auth.register({ name: document.getElementById('regName').value, email: document.getElementById('regEmail').value, password: document.getElementById('regPassword').value });
+    auth.setSession(res.data.token, res.data.user);
+    showToast('Welcome to Save Time!', 'success');
+    setTimeout(() => window.location.href = 'dashboard.html', 700);
+  } catch (err) {
+    showToast(err.message || 'Registration failed', 'error');
+    btn.innerHTML = 'Create Account'; btn.disabled = false;
+  }
+}
+
+function showToast(msg, type) {
+  let c = document.querySelector('.toast-container');
+  if (!c) { c = document.createElement('div'); c.className = 'toast-container'; document.body.appendChild(c); }
+  const t = document.createElement('div'); t.className = `toast ${type}`;
+  t.innerHTML = `<span class="toast-icon">${type==='success'?'✓':'✕'}</span><span class="toast-msg">${msg}</span>`;
+  c.appendChild(t); setTimeout(() => t.remove(), 4000);
+}
+
+document.addEventListener('DOMContentLoaded', () => theme.init());
+</script>
+</body>
+</html>

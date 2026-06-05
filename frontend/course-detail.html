@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Detail — Save Time English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .course-hero{background:var(--gradient-hero);padding:60px 0 50px;}
+    .course-hero h1{color:white;font-size:clamp(1.6rem,3vw,2.3rem);margin-bottom:12px;line-height:1.3;}
+    .course-hero p{color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.7;max-width:700px;margin-bottom:18px;}
+    .course-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start;margin-top:-30px;padding:0 0 60px;}
+    .course-sidebar{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;position:sticky;top:84px;z-index:10;}
+    .curriculum-section{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:10px;overflow:hidden;}
+    .curriculum-header{padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:0.9rem;}
+    .curriculum-header:hover{background:var(--bg-secondary);}
+    .curriculum-body{display:none;border-top:1px solid var(--border);}
+    .curriculum-body.open{display:block;}
+    .lesson-row{display:flex;align-items:center;gap:12px;padding:10px 18px;border-bottom:1px solid var(--border);}
+    .lesson-row:last-child{border-bottom:none;}
+    .lesson-row:hover{background:var(--bg-secondary);}
+    @media(max-width:900px){.course-layout{grid-template-columns:1fr!important;}.course-sidebar{position:static!important;order:-1;}}
+  </style>
+</head>
+<body>
+<div class="page-loader"><div class="loader-ring"></div></div>
+
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="nav-logo-text">Save <span>Time</span></span></a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="courses.html" class="nav-link">Courses</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle"><span class="theme-icon">🌙</span></button>
+      <a href="auth.html?mode=login" class="btn btn-ghost btn-sm auth-login-btn">Sign In</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm auth-register-btn">Start Learning</a>
+      <div class="auth-user-menu" style="display:none;align-items:center;gap:8px;"><div style="width:34px;height:34px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.8rem;cursor:pointer;" onclick="window.location.href='dashboard.html'"><span class="user-name">U</span></div><button onclick="auth.logout()" class="btn btn-ghost btn-sm">Logout</button></div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div id="coursePage">
+  <div style="text-align:center;padding:100px 20px;color:var(--text-muted);"><div class="loader-ring" style="margin:0 auto 16px;"></div><p>Loading course…</p></div>
+</div>
+
+<!-- Video Player Modal -->
+<div class="modal-overlay" id="videoPlayerModal" onclick="closeVideoPlayer()">
+  <div class="modal" style="max-width:880px;padding:0;overflow:hidden;background:#000;border:none;" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeVideoPlayer()" style="position:absolute;top:10px;right:10px;z-index:3;background:rgba(0,0,0,0.6);color:#fff;">×</button>
+    <video id="vplayer" controls playsinline style="width:100%;display:block;max-height:80vh;background:#000;"></video>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo"><div class="footer-logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span class="footer-logo-text">Save <span>Time</span></span></div><p class="footer-desc">Save time, learn English fast.</p></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="courses.html">All Courses</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Support</h4><ul class="footer-links"><li><a href="#">30-Day Guarantee</a></li><li><a href="contact.html">Free Consultation</a></li></ul></div>
+      <div><h4>Contact</h4><ul class="footer-links"><li><a href="mailto:info@savetime.com">info@savetime.com</a></li><li><a href="tel:+15551234567">+1 (555) 123-4567</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Save Time English. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+const levelColors = { beginner:'#10b981','pre-intermediate':'#3b82f6',intermediate:'#f59e0b','upper-intermediate':'#8b5cf6',advanced:'#ef4444','all-levels':'#06b6d4' };
+let courseData = null;
+
+async function loadCourse() {
+  const slug = new URLSearchParams(window.location.search).get('slug');
+  if (!slug) { window.location.href = 'courses.html'; return; }
+  try {
+    const res = await api.courses.get(slug);
+    courseData = res.data.course;
+    courseData.lessons = res.data.lessons || [];
+    courseData.enrolled = !!res.data.enrollment;
+    document.title = courseData.title + ' — Save Time English';
+    renderCourse(courseData);
+  } catch {
+    document.getElementById('coursePage').innerHTML = `<div style="text-align:center;padding:100px 20px;">
+      <div style="font-size:3rem;margin-bottom:16px;">📚</div>
+      <h2>Course Not Found</h2>
+      <p style="color:var(--text-muted);margin-bottom:20px;">This course may have been removed or the server is not running.</p>
+      <a href="courses.html" class="btn btn-primary">Browse All Courses</a>
+    </div>`;
+  }
+}
+
+function renderCourse(c) {
+  const lc = levelColors[c.level] || '#3b82f6';
+  const enrolled = c.enrolled || false;
+  const totalLessons = c.lessons ? c.lessons.length : 0;
+  const discount = c.original_price > c.price ? Math.round((1 - c.price / c.original_price) * 100) : 0;
+
+  document.getElementById('coursePage').innerHTML = `
+    <section class="course-hero">
+      <div class="container">
+        <div class="breadcrumb" style="margin-bottom:14px;"><a href="courses.html" style="color:rgba(255,255,255,0.55);">← All Courses</a></div>
+        <div style="display:inline-flex;align-items:center;gap:7px;background:${lc}28;color:${lc};padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;text-transform:capitalize;margin-bottom:12px;">${c.level}</div>
+        <h1>${c.title}</h1>
+        <p>${c.short_description || c.description || ''}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:20px;font-size:0.84rem;color:rgba(255,255,255,0.65);">
+          <span>⭐ ${c.rating || 0} (${(c.rating_count||0).toLocaleString()} reviews)</span>
+          <span>👥 ${(c.total_students||0).toLocaleString()} students</span>
+          <span>⏱ ${c.duration || 'Self-paced'}</span>
+          <span>🎓 ${totalLessons} lessons</span>
+          <span>📜 Certificate included</span>
+          ${c.instructor_name ? `<span>👨‍🏫 ${c.instructor_name}</span>` : ''}
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="course-layout">
+        <div>
+          ${c.what_you_learn ? `
+          <div class="card" style="margin-bottom:18px;">
+            <h3 style="margin-bottom:14px;">What You'll Learn</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              ${c.what_you_learn.split('\n').filter(l=>l.trim()).map(l=>`
+              <div style="display:flex;gap:9px;align-items:flex-start;">
+                <span style="color:var(--success);flex-shrink:0;margin-top:2px;">✓</span>
+                <span style="font-size:0.87rem;color:var(--text-secondary);">${l.replace(/^[-•]\s*/,'')}</span>
+              </div>`).join('')}
+            </div>
+          </div>` : ''}
+
+          <div class="card" style="margin-bottom:18px;">
+            <h3 style="margin-bottom:16px;">Course Curriculum</h3>
+            ${c.lessons && c.lessons.length ? c.lessons.map((lesson, i) => `
+            <div class="curriculum-section">
+              <div class="curriculum-header" onclick="toggleLesson(this)">
+                <div style="display:flex;align-items:center;gap:11px;">
+                  <div style="width:28px;height:28px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-size:0.75rem;font-weight:700;flex-shrink:0;">${i+1}</div>
+                  <span>${lesson.title}</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  ${lesson.duration ? `<span style="font-size:0.77rem;color:var(--text-muted);">⏱ ${lesson.duration}</span>` : ''}
+                  <span style="font-size:1.1rem;color:var(--text-muted);">›</span>
+                </div>
+              </div>
+              <div class="curriculum-body">
+                ${lesson.description ? `<div style="padding:11px 18px;border-bottom:1px solid var(--border);"><p style="font-size:0.86rem;color:var(--text-secondary);margin:0;line-height:1.6;">${lesson.description}</p></div>` : ''}
+                ${lesson.videos && lesson.videos.length ? lesson.videos.map(v => {
+                  const canWatch = v.is_free || enrolled;
+                  return `
+                <div class="lesson-row">
+                  <div style="width:30px;height:30px;border-radius:50%;background:${canWatch?'rgba(16,185,129,0.1)':'rgba(100,116,139,0.08)'};display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;">${canWatch?'▶':'🔒'}</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:0.86rem;font-weight:500;">${v.title}</div>
+                    ${v.duration?`<div style="font-size:0.74rem;color:var(--text-muted);">⏱ ${v.duration}</div>`:''}
+                  </div>
+                  ${v.is_free ? `<span style="font-size:0.71rem;font-weight:700;background:rgba(16,185,129,0.12);color:var(--success);padding:2px 9px;border-radius:100px;white-space:nowrap;">Free Preview</span>` : ''}
+                  ${canWatch ? `<button class="btn btn-primary btn-sm" onclick="playVideo(${v.id})">▶ Watch</button>` : `<span style="font-size:0.75rem;color:var(--text-muted);white-space:nowrap;">🔒 Enrolled only</span>`}
+                </div>`; }).join('') : `<div class="lesson-row"><span style="color:var(--text-muted);font-size:0.84rem;">No videos yet</span></div>`}
+              </div>
+            </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.9rem;">Curriculum coming soon.</p>'}
+          </div>
+
+          ${c.description ? `
+          <div class="card" style="margin-bottom:18px;">
+            <h3 style="margin-bottom:12px;">About This Course</h3>
+            <div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.85;">${c.description.replace(/\n/g,'<br>')}</div>
+          </div>` : ''}
+
+          ${c.requirements ? `
+          <div class="card">
+            <h3 style="margin-bottom:12px;">Requirements</h3>
+            <ul style="color:var(--text-secondary);font-size:0.88rem;line-height:1.9;padding-left:18px;">
+              ${c.requirements.split('\n').filter(l=>l.trim()).map(l=>`<li>${l.replace(/^[-•]\s*/,'')}</li>`).join('')}
+            </ul>
+          </div>` : ''}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="course-sidebar">
+          ${c.thumbnail ? `<img src="${c.thumbnail}" alt="${c.title}" style="width:100%;border-radius:11px;margin-bottom:16px;aspect-ratio:16/9;object-fit:cover;">` : ''}
+          <div style="font-size:2rem;font-weight:900;color:var(--primary-light);margin-bottom:4px;">${c.price > 0 ? '$' + c.price : 'Free'}</div>
+          ${discount > 0 ? `<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-size:1rem;text-decoration:line-through;color:var(--text-muted);">$${c.original_price}</span><span style="font-size:0.78rem;font-weight:700;background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 9px;border-radius:100px;">${discount}% off</span></div>` : '<div style="margin-bottom:12px;"></div>'}
+          ${enrolled
+            ? `<a href="dashboard.html" class="btn btn-primary btn-lg" style="width:100%;margin-bottom:10px;display:block;text-align:center;">Continue Learning →</a><p style="text-align:center;font-size:0.78rem;color:var(--success);margin-bottom:14px;">✓ You are enrolled</p>`
+            : `<button class="btn btn-primary btn-lg" style="width:100%;margin-bottom:10px;" id="enrollBtn" onclick="enrollNow()">🚀 Enroll Now</button><p style="text-align:center;font-size:0.77rem;color:var(--text-muted);margin-bottom:14px;">30-day money-back guarantee</p>`}
+          <div style="border-top:1px solid var(--border);padding-top:16px;">
+            <h4 style="font-size:0.84rem;font-weight:700;margin-bottom:11px;">This course includes:</h4>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;gap:9px;align-items:center;font-size:0.83rem;color:var(--text-secondary);">🎬 <span>${totalLessons} structured lessons</span></div>
+              <div style="display:flex;gap:9px;align-items:center;font-size:0.83rem;color:var(--text-secondary);">⏱ <span>${c.duration || 'Self-paced'}</span></div>
+              <div style="display:flex;gap:9px;align-items:center;font-size:0.83rem;color:var(--text-secondary);">📱 <span>Works on any device</span></div>
+              <div style="display:flex;gap:9px;align-items:center;font-size:0.83rem;color:var(--text-secondary);">🔄 <span>Lifetime access</span></div>
+              <div style="display:flex;gap:9px;align-items:center;font-size:0.83rem;color:var(--text-secondary);">📜 <span>Certificate of completion</span></div>
+            </div>
+          </div>
+          ${c.instructor_name ? `
+          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:14px;">
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">${c.instructor_name[0]}</div>
+              <div>
+                <div style="font-weight:700;font-size:0.9rem;">${c.instructor_name}</div>
+                <div style="font-size:0.76rem;color:var(--text-muted);">Certified English Teacher</div>
+              </div>
+            </div>
+          </div>` : ''}
+        </div>
+      </div>
+    </div>`;
+}
+
+function toggleLesson(btn) {
+  const body = btn.nextElementSibling;
+  const open = body.classList.toggle('open');
+  const arrow = btn.querySelector('span:last-child');
+  if (arrow) arrow.textContent = open ? '∨' : '›';
+}
+
+function playVideo(id) {
+  const v = document.getElementById('vplayer');
+  v.src = api.videos.streamUrl(id);
+  openModal('videoPlayerModal');
+  v.play().catch(() => {});
+}
+function closeVideoPlayer() {
+  const v = document.getElementById('vplayer');
+  v.pause(); v.removeAttribute('src'); v.load();
+  closeModal('videoPlayerModal');
+}
+
+async function enrollNow() {
+  if (!auth.isLoggedIn()) { window.location.href = 'auth.html?mode=login'; return; }
+  const btn = document.getElementById('enrollBtn');
+  btn.innerHTML = '<span class="loader"></span> Enrolling…'; btn.disabled = true;
+  try {
+    await api.enrollments.enroll(courseData.id);
+    showToast('Enrolled successfully! Redirecting to dashboard…', 'success');
+    setTimeout(() => window.location.href = 'dashboard.html', 1500);
+  } catch (err) {
+    showToast(err.message || 'Failed to enroll. Please try again.', 'error');
+    btn.innerHTML = '🚀 Enroll Now'; btn.disabled = false;
+  }
+}
+
+loadCourse();
+</script>
+</body>
+</html>
