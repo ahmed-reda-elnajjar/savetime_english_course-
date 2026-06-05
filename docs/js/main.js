@@ -43,6 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== AUTH BUTTONS =====
   updateAuthUI();
 
+  // ===== MOBILE NAV: move auth actions into the dropdown menu =====
+  relocateNavActions();
+  let _navResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(_navResizeTimer);
+    _navResizeTimer = setTimeout(relocateNavActions, 150);
+  });
+  // matchMedia fires exactly when crossing the breakpoint (more reliable)
+  const _navMq = window.matchMedia('(max-width: 768px)');
+  (_navMq.addEventListener ? _navMq.addEventListener('change', relocateNavActions)
+                           : _navMq.addListener(relocateNavActions));
+
   // ===== PAGE LOADER =====
   const loader = document.querySelector('.page-loader');
   if (loader) {
@@ -83,6 +95,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+// On phones, relocate Sign In / Start Learning / user-menu into the dropdown
+// menu so the top bar only holds the logo, theme toggle and hamburger.
+function relocateNavActions() {
+  const menu = document.querySelector('.nav-menu');
+  const actions = document.querySelector('.nav-actions');
+  if (!menu || !actions) return;
+  const mobile = window.matchMedia('(max-width: 768px)').matches;
+  const els = [
+    document.querySelector('.nav-actions .auth-login-btn'),
+    document.querySelector('.nav-actions .auth-register-btn'),
+    document.querySelector('.nav-actions .auth-user-menu'),
+    ...menu.querySelectorAll('.nav-auth-item .auth-login-btn, .nav-auth-item .auth-register-btn, .nav-auth-item .auth-user-menu')
+  ].filter(Boolean);
+  const hamburger = actions.querySelector('.hamburger');
+
+  if (mobile) {
+    els.forEach(el => {
+      if (!el.closest('.nav-menu')) {
+        const li = document.createElement('li');
+        li.className = 'nav-auth-item';
+        li.appendChild(el);
+        menu.appendChild(li);
+      }
+    });
+  } else {
+    els.forEach(el => {
+      const li = el.closest('.nav-auth-item');
+      if (li) { actions.insertBefore(el, hamburger); li.remove(); }
+    });
+  }
+}
 
 function updateAuthUI() {
   const isLoggedIn = auth.isLoggedIn();

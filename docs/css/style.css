@@ -355,6 +355,12 @@ select.form-control { appearance: none; cursor: pointer; }
   .nav-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-card); padding: 14px; flex-direction: column; align-items: stretch; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-lg); z-index: 999; }
   .nav-menu.open { display: flex; }
   .nav-link { padding: 12px 14px; font-size: 1rem; }
+  /* Auth buttons relocated into the dropdown on phones */
+  .nav-menu .nav-auth-item { list-style: none; margin-top: 6px; }
+  .nav-menu .nav-auth-item:first-of-type { border-top: 1px solid var(--border); padding-top: 12px; }
+  .nav-menu .auth-login-btn,
+  .nav-menu .auth-register-btn { width: 100%; justify-content: center; }
+  .nav-menu .auth-user-menu { justify-content: center; }
   .container { padding: 0 18px; }
   .nav-container { padding: 0 18px; }
   .courses-grid { grid-template-columns: 1fr; }
