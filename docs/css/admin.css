@@ -174,8 +174,15 @@ body.admin-body {
   .admin-main { margin-left: 0; }
   .sidebar-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .admin-content { padding: 18px; }
+  .page-title { margin-bottom: 18px; }
+  .page-title h1 { font-size: 1.35rem; }
+  .page-title p { font-size: 0.84rem; }
 }
 @media (max-width: 520px) {
   .stats-cards-grid { grid-template-columns: 1fr; }
   .admin-table { display: block; overflow-x: auto; white-space: nowrap; }
+  .page-title { flex-direction: column; align-items: stretch; }
+  .page-title .btn { width: 100%; justify-content: center; }
+  .charts-grid { gap: 14px; }
+  .admin-topbar { padding: 0 14px; }
 }

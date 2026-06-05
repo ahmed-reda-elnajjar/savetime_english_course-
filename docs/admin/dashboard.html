@@ -193,8 +193,8 @@
         <div class="form-group" style="grid-column:1/-1;margin-bottom:0;"><label class="form-label">Course Title *</label><input type="text" class="form-control" id="cTitle" required></div>
         <div class="form-group" style="margin-bottom:0;"><label class="form-label">Level *</label><select class="form-control" id="cLevel" required><option value="">Select…</option><option value="beginner">Beginner</option><option value="pre-intermediate">Pre-Intermediate</option><option value="intermediate">Intermediate</option><option value="upper-intermediate">Upper-Intermediate</option><option value="advanced">Advanced</option><option value="all-levels">All Levels</option></select></div>
         <div class="form-group" style="margin-bottom:0;"><label class="form-label">Instructor Name</label><input type="text" class="form-control" id="cInstructor"></div>
-        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Price ($)</label><input type="number" class="form-control" id="cPrice" min="0" value="0"></div>
-        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Original Price ($)</label><input type="number" class="form-control" id="cOriginalPrice" min="0" value="0"></div>
+        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Price (ج.م)</label><input type="number" class="form-control" id="cPrice" min="0" value="0"></div>
+        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Original Price (ج.م)</label><input type="number" class="form-control" id="cOriginalPrice" min="0" value="0"></div>
         <div class="form-group" style="margin-bottom:0;"><label class="form-label">Duration</label><input type="text" class="form-control" id="cDuration" placeholder="e.g. 8 weeks"></div>
         <div class="form-group" style="grid-column:1/-1;margin-bottom:0;"><label class="form-label">Short Description</label><textarea class="form-control" id="cShortDesc" rows="2"></textarea></div>
         <div class="form-group" style="grid-column:1/-1;margin-bottom:0;"><label class="form-label">Full Description</label><textarea class="form-control" id="cDesc" rows="3"></textarea></div>
@@ -257,7 +257,7 @@
       <input type="hidden" id="planId">
       <div class="form-group"><label class="form-label">Plan Name *</label><input type="text" class="form-control" id="planName" required></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Price ($/month) *</label><input type="number" class="form-control" id="planPrice" min="0" required></div>
+        <div class="form-group" style="margin-bottom:0;"><label class="form-label">Price (ج.م/month) *</label><input type="number" class="form-control" id="planPrice" min="0" required></div>
         <div class="form-group" style="margin-bottom:0;"><label class="form-label">Highlighted (Popular)?</label><select class="form-control" id="planPopular"><option value="0">No</option><option value="1">Yes — show badge</option></select></div>
       </div>
       <div class="form-group" style="margin-top:14px;"><label class="form-label">Features (one per line) *</label><textarea class="form-control" id="planFeatures" rows="5" placeholder="Access to 3 courses&#10;Weekly live sessions&#10;Certificate included" required></textarea></div>
@@ -315,7 +315,7 @@ async function loadAnalytics() {
       <div class="stat-card"><div class="stat-card-icon" style="background:rgba(42,91,196,0.12);color:var(--primary-light);">👥</div><div><div class="stat-card-value">${(s.totalStudents||0).toLocaleString()}</div><div class="stat-card-label">Total Students</div></div></div>
       <div class="stat-card"><div class="stat-card-icon" style="background:rgba(201,162,39,0.12);color:var(--secondary);">📚</div><div><div class="stat-card-value">${s.totalCourses||0}</div><div class="stat-card-label">English Courses</div></div></div>
       <div class="stat-card"><div class="stat-card-icon" style="background:rgba(16,185,129,0.12);color:var(--success);">🎓</div><div><div class="stat-card-value">${(s.totalEnrollments||0).toLocaleString()}</div><div class="stat-card-label">Enrollments</div></div></div>
-      <div class="stat-card"><div class="stat-card-icon" style="background:rgba(139,92,246,0.12);color:#8b5cf6;">💰</div><div><div class="stat-card-value">$${(s.totalRevenue||0).toLocaleString()}</div><div class="stat-card-label">Total Revenue</div></div></div>`;
+      <div class="stat-card"><div class="stat-card-icon" style="background:rgba(139,92,246,0.12);color:#8b5cf6;">💰</div><div><div class="stat-card-value" style="font-size:1.3rem;">${formatEGP(s.totalRevenue)}</div><div class="stat-card-label">Total Revenue</div></div></div>`;
 
     const chart = document.getElementById('enrollmentChart');
     const months = res.data.monthlyRevenue || [];
@@ -337,7 +337,7 @@ async function loadAnalytics() {
       <div style="display:flex;align-items:center;gap:11px;padding:8px 0;${i<top.length-1?'border-bottom:1px solid var(--border);':''}">
         <div style="width:22px;height:22px;border-radius:50%;background:var(--gradient-primary);display:flex;align-items:center;justify-content:center;color:white;font-size:0.7rem;font-weight:700;flex-shrink:0;">${i+1}</div>
         <div style="flex:1;min-width:0;"><div style="font-size:0.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</div><div style="font-size:0.73rem;color:var(--text-muted);">${c.total_students||0} students</div></div>
-        <div style="font-size:0.82rem;font-weight:700;color:var(--secondary);white-space:nowrap;">$${c.price}</div>
+        <div style="font-size:0.82rem;font-weight:700;color:var(--secondary);white-space:nowrap;">${formatEGP(c.price)}</div>
       </div>`).join('') : '<p style="color:var(--text-muted);font-size:0.85rem;">No data yet</p>';
   } catch { document.getElementById('analyticsStats').innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1;">Could not load analytics. Is the server running?</p>'; }
 }
@@ -366,7 +366,7 @@ function renderCoursesTable(courses) {
         <tr>
           <td><div style="font-weight:600;font-size:0.88rem;">${c.title}</div><div style="font-size:0.75rem;color:var(--text-muted);">${c.instructor_name||'—'}</div></td>
           <td><span style="font-size:0.72rem;font-weight:700;background:rgba(42,91,196,0.1);color:var(--primary-light);padding:2px 9px;border-radius:100px;text-transform:capitalize;">${c.level}</span></td>
-          <td style="font-weight:700;">$${c.price}</td>
+          <td style="font-weight:700;">${formatEGP(c.price)}</td>
           <td>${(c.total_students||0).toLocaleString()}</td>
           <td>⭐ ${c.rating||'—'}</td>
           <td>
@@ -406,8 +406,8 @@ function editCourse(c) {
   document.getElementById('cTitle').value = c.title || '';
   document.getElementById('cLevel').value = c.level || '';
   document.getElementById('cInstructor').value = c.instructor_name || '';
-  document.getElementById('cPrice').value = c.price || 0;
-  document.getElementById('cOriginalPrice').value = c.original_price || 0;
+  document.getElementById('cPrice').value = toEGP(c.price);
+  document.getElementById('cOriginalPrice').value = toEGP(c.original_price);
   document.getElementById('cDuration').value = c.duration || '';
   document.getElementById('cShortDesc').value = c.short_description || '';
   document.getElementById('cDesc').value = c.description || '';
@@ -427,8 +427,8 @@ async function saveCourse(e) {
   fd.append('title', document.getElementById('cTitle').value);
   fd.append('level', document.getElementById('cLevel').value);
   fd.append('instructor_name', document.getElementById('cInstructor').value);
-  fd.append('price', document.getElementById('cPrice').value || 0);
-  fd.append('original_price', document.getElementById('cOriginalPrice').value || 0);
+  fd.append('price', baseFromEGP(document.getElementById('cPrice').value));
+  fd.append('original_price', baseFromEGP(document.getElementById('cOriginalPrice').value));
   fd.append('duration', document.getElementById('cDuration').value);
   fd.append('short_description', document.getElementById('cShortDesc').value);
   fd.append('description', document.getElementById('cDesc').value);
@@ -630,7 +630,7 @@ async function loadPricing() {
       <div class="card" style="padding:22px;${p.is_popular?'border:2px solid var(--secondary);':''};position:relative;">
         ${p.is_popular ? '<div style="position:absolute;top:-1px;right:16px;background:var(--secondary);color:white;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:0 0 8px 8px;">POPULAR</div>' : ''}
         <h3 style="margin-bottom:6px;">${p.name}</h3>
-        <div style="font-size:2rem;font-weight:900;color:var(--primary-light);margin-bottom:4px;">$${p.price}<span style="font-size:0.9rem;font-weight:400;color:var(--text-muted);">/mo</span></div>
+        <div style="font-size:1.7rem;font-weight:900;color:var(--primary-light);margin-bottom:4px;">${formatEGP(p.price)}<span style="font-size:0.9rem;font-weight:400;color:var(--text-muted);">/mo</span></div>
         <ul style="margin:14px 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;">
           ${(p.features||[]).map(f=>`<li style="font-size:0.85rem;color:var(--text-secondary);display:flex;gap:8px;"><span style="color:var(--success);">✓</span>${f}</li>`).join('')}
         </ul>
@@ -656,7 +656,7 @@ function editPricing(p) {
   document.getElementById('pricingModalTitle').textContent = 'Edit Plan';
   document.getElementById('planId').value = p.id;
   document.getElementById('planName').value = p.name;
-  document.getElementById('planPrice').value = p.price;
+  document.getElementById('planPrice').value = toEGP(p.price);
   document.getElementById('planFeatures').value = (p.features||[]).join('\n');
   document.getElementById('planPopular').value = p.is_popular ? '1' : '0';
   openModal('pricingModal');
@@ -667,7 +667,7 @@ async function savePricing(e) {
   const btn = document.getElementById('pricingSubmitBtn');
   btn.innerHTML = '<span class="loader"></span>'; btn.disabled = true;
   const id = document.getElementById('planId').value;
-  const data = { name: document.getElementById('planName').value, price: parseFloat(document.getElementById('planPrice').value), features: document.getElementById('planFeatures').value.split('\n').filter(l=>l.trim()), is_popular: parseInt(document.getElementById('planPopular').value) };
+  const data = { name: document.getElementById('planName').value, price: baseFromEGP(document.getElementById('planPrice').value), features: document.getElementById('planFeatures').value.split('\n').filter(l=>l.trim()), is_popular: parseInt(document.getElementById('planPopular').value) };
   try {
     if (id) await api.admin.updatePricing(id, data);
     else await api.admin.createPricing(data);

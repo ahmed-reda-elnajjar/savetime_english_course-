@@ -185,8 +185,8 @@ function renderCourse(c) {
         <!-- Sidebar -->
         <div class="course-sidebar">
           ${c.thumbnail ? `<img src="${c.thumbnail}" alt="${c.title}" style="width:100%;border-radius:11px;margin-bottom:16px;aspect-ratio:16/9;object-fit:cover;">` : ''}
-          <div style="font-size:2rem;font-weight:900;color:var(--primary-light);margin-bottom:4px;">${c.price > 0 ? '$' + c.price : 'Free'}</div>
-          ${discount > 0 ? `<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-size:1rem;text-decoration:line-through;color:var(--text-muted);">$${c.original_price}</span><span style="font-size:0.78rem;font-weight:700;background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 9px;border-radius:100px;">${discount}% off</span></div>` : '<div style="margin-bottom:12px;"></div>'}
+          <div style="font-size:2rem;font-weight:900;color:var(--primary-light);margin-bottom:4px;">${formatPrice(c.price)}</div>
+          ${discount > 0 ? `<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-size:1rem;text-decoration:line-through;color:var(--text-muted);">${formatEGP(c.original_price)}</span><span style="font-size:0.78rem;font-weight:700;background:rgba(239,68,68,0.1);color:#ef4444;padding:2px 9px;border-radius:100px;">${discount}% off</span></div>` : '<div style="margin-bottom:12px;"></div>'}
           ${enrolled
             ? `<a href="dashboard.html" class="btn btn-primary btn-lg" style="width:100%;margin-bottom:10px;display:block;text-align:center;">Continue Learning →</a><p style="text-align:center;font-size:0.78rem;color:var(--success);margin-bottom:14px;">✓ You are enrolled</p>`
             : `<button class="btn btn-primary btn-lg" style="width:100%;margin-bottom:10px;" id="enrollBtn" onclick="enrollNow()">🚀 Enroll Now</button><p style="text-align:center;font-size:0.77rem;color:var(--text-muted);margin-bottom:14px;">30-day money-back guarantee</p>`}

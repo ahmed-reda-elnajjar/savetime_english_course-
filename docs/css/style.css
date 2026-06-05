@@ -349,22 +349,62 @@ select.form-control { appearance: none; cursor: pointer; }
   .course-hero-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
+  /* Clip transient horizontal overflow from scroll-in animations & hero blobs */
+  html, body { overflow-x: hidden; }
   .hamburger { display: flex; }
   .nav-menu { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--bg-card); padding: 14px; flex-direction: column; align-items: stretch; border-bottom: 1px solid var(--border); box-shadow: var(--shadow-lg); z-index: 999; }
   .nav-menu.open { display: flex; }
   .nav-link { padding: 12px 14px; font-size: 1rem; }
+  .container { padding: 0 18px; }
+  .nav-container { padding: 0 18px; }
   .courses-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .section { padding: 52px 0; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 26px; }
+  .section { padding: 48px 0; }
+  .section-header { margin-bottom: 34px; }
   .team-grid { grid-template-columns: 1fr 1fr; }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .page-header { padding: 96px 0 44px; }
+  .hero { min-height: auto; padding-top: 100px; padding-bottom: 52px; }
+  .card { padding: 20px; }
 }
-@media (max-width: 480px) {
-  .stats-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) {
+  .container { padding: 0 16px; }
+  .nav-container { padding: 0 16px; }
+  /* Stack inline two-column grids on phones (contact form, modals, etc.) */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"],
+  [style*="grid-template-columns:repeat(2"],
+  [style*="grid-template-columns: repeat(2"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Collapse 3/4-column inline grids to two columns on phones (stat tiles, etc.) */
+  [style*="grid-template-columns:repeat(4"],
+  [style*="grid-template-columns: repeat(4"],
+  [style*="grid-template-columns:repeat(3"],
+  [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 22px; }
   .team-grid { grid-template-columns: 1fr; }
   .auth-card { padding: 26px 18px; }
-  .hero h1 { font-size: 1.9rem; }
+  .auth-page { padding: 16px; }
+  .hero h1 { font-size: 1.75rem; line-height: 1.25; }
+  .hero p { font-size: 1rem; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .section { padding: 40px 0; }
+  .section-header h2 { font-size: 1.45rem; }
+  .section-header p { font-size: 0.95rem; }
+  .page-header { padding: 90px 0 36px; }
+  .page-header h1 { font-size: 1.6rem; }
+  .page-header p { font-size: 0.95rem; }
+  .card { padding: 18px; }
+  .modal { max-width: 100%; }
+  .modal-overlay { padding: 14px; }
+  .btn-lg { padding: 12px 20px; font-size: 0.92rem; }
+  h2 { font-size: 1.45rem; }
 }
 
 /* ===== UTILS ===== */

@@ -223,6 +223,15 @@ function renderStars(rating, max = 5) {
   return Array.from({ length: max }, (_, i) => `<span style="color:${i < rating ? '#f59e0b' : '#e2e8f0'}">★</span>`).join('');
 }
 
+// ===== Currency (Egyptian Pound) =====
+// Stored prices are a base value; the platform displays them in EGP using this
+// rate. Admin inputs are entered in EGP and divided back to the base on save.
+const CURRENCY = { rate: 50, symbol: 'ج.م' };
+function toEGP(base) { return Math.round((Number(base) || 0) * CURRENCY.rate); }
+function baseFromEGP(egp) { return (Number(egp) || 0) / CURRENCY.rate; }
+function formatEGP(base) { return toEGP(base).toLocaleString('en-US') + ' ' + CURRENCY.symbol; }
+function formatPrice(base) { return toEGP(base) === 0 ? 'Free' : formatEGP(base); }
+
 // ===== Date format =====
 function formatDate(ts) {
   if (!ts) return '';

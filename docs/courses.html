@@ -162,7 +162,7 @@ function renderCourseCard(c) {
         <span>👥 ${(c.total_students||0).toLocaleString()}</span>
       </div>
       <div class="course-card-footer">
-        <div><span class="course-price-current">${c.price>0?'$'+c.price:'Free'}</span>${c.original_price>c.price?`<span class="course-price-original">$${c.original_price}</span>`:''}</div>
+        <div><span class="course-price-current">${formatPrice(c.price)}</span>${c.original_price>c.price?`<span class="course-price-original">${formatEGP(c.original_price)}</span>`:''}</div>
         <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();window.location.href='course-detail.html?slug=${c.slug}'">View Course</button>
       </div>
     </div>

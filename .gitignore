@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+backend/.env
+
+# SQLite database (runtime data)
+*.db
+*.db-shm
+*.db-wal
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# Uploaded user content
+uploads/images/*
+uploads/videos/*
+uploads/resources/*
+!uploads/**/.gitkeep
+
+# Logs / OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

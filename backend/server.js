@@ -40,7 +40,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../docs')));
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -68,7 +68,7 @@ app.get('/api/pricing', (req, res) => {
 
 // Serve frontend for non-API routes
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../docs/index.html'));
 });
 
 // Error handler
